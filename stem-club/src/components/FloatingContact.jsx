@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { MessageSquare, Phone, Mail, UserPlus, X } from 'lucide-react';
+import { MessageSquare, Phone, Mail, UserCheck, X } from 'lucide-react';
 
 export default function FloatingContact() {
   const [open, setOpen] = useState(false);
 
   return (
-    <div style={{ position: 'fixed', bottom: '2rem', right: '2rem', zIndex: 150 }}>
+    <div style={{ position: 'fixed', bottom: '1.5rem', right: '1.5rem', zIndex: 950 }}>
       {/* Popover Menu */}
       {open && (
         <div
@@ -16,36 +16,38 @@ export default function FloatingContact() {
             position: 'absolute',
             bottom: '4rem',
             right: 0,
-            width: '260px',
-            background: 'var(--bg-card)',
-            border: '1px solid var(--border-medium)',
-            borderRadius: '12px',
-            boxShadow: '0 12px 36px rgba(0,0,0,0.6)',
-            padding: '1rem',
+            width: '270px',
+            backgroundColor: '#ffffff',
+            border: '2px solid #000000',
+            borderRadius: '18px',
+            boxShadow: '0 16px 40px rgba(0,0,0,0.3)',
+            padding: '1.25rem',
             display: 'flex',
             flexDirection: 'column',
-            gap: '0.625rem',
-            animation: 'fadeIn 0.2s ease'
+            gap: '0.75rem',
+            animation: 'fadeIn 0.2s ease',
+            color: '#000000'
           }}
         >
           <div style={{
             fontSize: '0.75rem',
             fontFamily: 'var(--font-mono)',
-            color: 'var(--accent-cyan)',
-            paddingBottom: '0.375rem',
-            borderBottom: '1px solid var(--border-subtle)',
+            fontWeight: 800,
+            color: '#000000',
+            paddingBottom: '0.5rem',
+            borderBottom: '2px solid #000000',
             textTransform: 'uppercase',
             display: 'flex',
             justifyContent: 'space-between',
             alignItems: 'center'
           }}>
-            <span>Club Contact & Join</span>
+            <span>Teacher Inquiries</span>
             <button
               onClick={() => setOpen(false)}
               aria-label="Close contact options"
-              style={{ background: 'none', border: 'none', color: 'var(--text-muted)', cursor: 'pointer', padding: '2px' }}
+              style={{ background: 'none', border: 'none', color: '#000000', cursor: 'pointer', padding: '2px' }}
             >
-              <X size={14} />
+              <X size={16} />
             </button>
           </div>
 
@@ -56,17 +58,18 @@ export default function FloatingContact() {
               alignItems: 'center',
               gap: '0.625rem',
               padding: '0.5rem',
-              borderRadius: '6px',
+              borderRadius: '8px',
               fontSize: '0.8125rem',
-              color: 'var(--text-primary)',
+              fontWeight: 600,
+              color: '#000000',
               textDecoration: 'none',
               transition: 'background-color 0.15s ease'
             }}
-            onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = 'var(--bg-surface)')}
+            onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = '#f1f5f9')}
             onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = 'transparent')}
           >
-            <Phone size={15} color="var(--accent-cyan)" />
-            <span>Call School: 0484-4440000</span>
+            <Phone size={15} color="#000000" />
+            <span>Call: 0484-4440000</span>
           </a>
 
           <a
@@ -76,16 +79,17 @@ export default function FloatingContact() {
               alignItems: 'center',
               gap: '0.625rem',
               padding: '0.5rem',
-              borderRadius: '6px',
+              borderRadius: '8px',
               fontSize: '0.8125rem',
-              color: 'var(--text-primary)',
+              fontWeight: 600,
+              color: '#000000',
               textDecoration: 'none',
               transition: 'background-color 0.15s ease'
             }}
-            onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = 'var(--bg-surface)')}
+            onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = '#f1f5f9')}
             onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = 'transparent')}
           >
-            <Mail size={15} color="var(--accent-sky)" />
+            <Mail size={15} color="#000000" />
             <span>Email: office@gps.ac.in</span>
           </a>
 
@@ -95,20 +99,23 @@ export default function FloatingContact() {
             style={{
               display: 'flex',
               alignItems: 'center',
-              gap: '0.625rem',
-              padding: '0.5rem',
-              borderRadius: '6px',
+              gap: '0.5rem',
+              padding: '0.6rem 1rem',
+              borderRadius: '999px',
               fontSize: '0.8125rem',
-              color: '#060913',
-              backgroundColor: 'var(--accent-cyan)',
-              fontWeight: 600,
+              fontWeight: 800,
+              color: '#ffffff',
+              backgroundColor: '#000000',
+              border: '2px solid #000000',
               textDecoration: 'none',
               marginTop: '0.25rem',
-              justifyContent: 'center'
+              justifyContent: 'center',
+              textTransform: 'uppercase',
+              fontFamily: 'var(--font-heading)'
             }}
           >
-            <UserPlus size={15} />
-            <span>Apply to Join Club</span>
+            <UserCheck size={15} />
+            <span>Selection Details</span>
           </Link>
         </div>
       )}
@@ -118,23 +125,23 @@ export default function FloatingContact() {
         onClick={() => setOpen(!open)}
         aria-label={open ? 'Close contact menu' : 'Open quick contact menu'}
         style={{
-          width: '52px',
-          height: '52px',
+          width: '50px',
+          height: '50px',
           borderRadius: '50%',
-          background: 'linear-gradient(135deg, var(--accent-cyan), #0284c7)',
-          border: 'none',
-          color: '#060913',
+          backgroundColor: '#000000',
+          border: '2px solid #ffffff',
+          color: '#ffffff',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
           cursor: 'pointer',
-          boxShadow: '0 8px 24px rgba(0, 229, 255, 0.4)',
-          transition: 'transform 0.2s ease'
+          boxShadow: '0 8px 24px rgba(0, 0, 0, 0.35)',
+          transition: 'transform 0.2s cubic-bezier(0.16, 1, 0.3, 1)'
         }}
-        onMouseEnter={(e) => (e.currentTarget.style.transform = 'scale(1.08)')}
+        onMouseEnter={(e) => (e.currentTarget.style.transform = 'scale(1.1)')}
         onMouseLeave={(e) => (e.currentTarget.style.transform = 'scale(1)')}
       >
-        {open ? <X size={22} strokeWidth={2.2} /> : <MessageSquare size={22} strokeWidth={2.2} />}
+        {open ? <X size={22} strokeWidth={2.5} /> : <MessageSquare size={22} strokeWidth={2.2} />}
       </button>
     </div>
   );

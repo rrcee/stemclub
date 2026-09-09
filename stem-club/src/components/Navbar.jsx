@@ -47,11 +47,26 @@ export default function Navbar() {
     <>
       <nav className={`nav ${scrolled ? 'scrolled' : ''}`} role="navigation" aria-label="Main navigation">
         <div className="nav-inner">
-          <Link to="/" className="nav-logo" aria-label="STEM Club Home">
-            <span className="nav-logo-icon" style={{ width: '42px', height: '42px', padding: '3px', background: '#ffffff', borderRadius: '10px', border: '2px solid #000000', overflow: 'hidden', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-              <img src="/assets/stem-club-logo.png" alt="STEM Club Logo" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
+          <Link to="/" className="nav-logo" aria-label="STEM Club Home" style={{ display: 'flex', alignItems: 'center', gap: '0.85rem' }}>
+            <span className="nav-logo-icon" style={{
+              width: '54px',
+              height: '54px',
+              background: '#ffffff',
+              borderRadius: '50%',
+              border: '3px solid #000000',
+              padding: '2px',
+              overflow: 'hidden',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              boxShadow: '0 6px 18px rgba(0,0,0,0.25)',
+              flexShrink: 0
+            }}>
+              <div style={{ width: '100%', height: '100%', borderRadius: '50%', overflow: 'hidden', background: '#ffffff', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                <img src="/assets/stem-club-logo.png" alt="STEM Club Logo" style={{ width: '92%', height: '92%', objectFit: 'contain' }} />
+              </div>
             </span>
-            <span>STEM CLUB</span>
+            <span style={{ fontSize: '1.25rem', fontWeight: 900, letterSpacing: '0.04em' }}>STEM CLUB</span>
           </Link>
 
           <ul className="nav-links" role="menubar">
@@ -69,7 +84,7 @@ export default function Navbar() {
           </ul>
 
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-            <Link to="/join" className="btn btn-primary nav-cta" style={{ padding: '0.5rem 1.25rem', fontSize: '0.75rem' }}>
+            <Link to="/join" className="btn btn-primary nav-cta" style={{ padding: '0.5rem 1.25rem', fontSize: '0.75rem', borderRadius: '999px' }}>
               Selection
             </Link>
 
@@ -93,12 +108,14 @@ export default function Navbar() {
         aria-modal="true"
         aria-label="Mobile navigation"
       >
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.25rem', paddingBottom: '1rem', borderBottom: '2px solid rgba(255, 255, 255, 0.25)' }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.625rem' }}>
-            <span style={{ width: '36px', height: '36px', padding: '2px', background: '#ffffff', borderRadius: '8px', border: '1.5px solid #000000', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-              <img src="/assets/stem-club-logo.png" alt="STEM Club Logo" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.5rem', paddingBottom: '1rem', borderBottom: '2px solid rgba(255, 255, 255, 0.25)' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.85rem' }}>
+            <span style={{ width: '50px', height: '50px', background: '#ffffff', borderRadius: '50%', border: '2.5px solid #000000', padding: '2px', overflow: 'hidden', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+              <div style={{ width: '100%', height: '100%', borderRadius: '50%', overflow: 'hidden', background: '#ffffff', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                <img src="/assets/stem-club-logo.png" alt="STEM Club Logo" style={{ width: '92%', height: '92%', objectFit: 'contain' }} />
+              </div>
             </span>
-            <span style={{ fontFamily: 'var(--font-heading)', fontWeight: 800, color: '#ffffff', fontSize: '1.1rem' }}>STEM CLUB</span>
+            <span style={{ fontFamily: 'var(--font-heading)', fontWeight: 900, color: '#ffffff', fontSize: '1.25rem', letterSpacing: '0.04em' }}>STEM CLUB</span>
           </div>
           <button
             onClick={() => setMobileOpen(false)}

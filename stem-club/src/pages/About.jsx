@@ -91,20 +91,22 @@ const About = () => {
           display: 'inline-flex',
           alignItems: 'center',
           justifyContent: 'center',
-          width: '96px',
-          height: '96px',
-          borderRadius: '20px',
+          width: '150px',
+          height: '150px',
+          borderRadius: '32px',
           background: '#ffffff',
-          padding: '8px',
-          border: '2px solid #000000',
-          marginBottom: '1.5rem',
-          boxShadow: '0 8px 24px rgba(0,0,0,0.2)'
+          padding: '6px',
+          border: '3px solid #000000',
+          marginBottom: '1.75rem',
+          boxShadow: '0 16px 40px rgba(0,0,0,0.28)'
         }}>
-          <img
-            src="/assets/stem-club-logo.png"
-            alt="Official STEM Club Logo"
-            style={{ width: '100%', height: '100%', objectFit: 'contain' }}
-          />
+          <div style={{ width: '100%', height: '100%', borderRadius: '26px', overflow: 'hidden', background: '#ffffff', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <img
+              src="/assets/stem-club-logo.png"
+              alt="Official STEM Club Logo"
+              style={{ width: '92%', height: '92%', objectFit: 'contain' }}
+            />
+          </div>
         </div>
         <br />
         <span className="section-label" style={{ color: '#ffffff' }}>Club Identity</span>
@@ -120,8 +122,8 @@ const About = () => {
         className="about-cards-grid"
         style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '30px', marginBottom: '60px' }}
       >
-        <section className="about-stagger-card gsap-card card" style={{ backgroundColor: '#ffffff', color: '#000000', padding: '30px', borderRadius: '12px', border: '2px solid #000000' }}>
-          <h2 style={{ fontFamily: 'var(--font-heading)', color: '#000000', display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '20px', fontSize: '1.5rem' }}>
+        <section className="about-stagger-card gsap-card card" style={{ backgroundColor: '#ffffff', color: '#000000', padding: '30px', borderRadius: '24px', border: '2px solid #000000' }}>
+          <h2 style={{ fontFamily: 'var(--font-heading)', color: '#000000', display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '20px', fontSize: '1.5rem', fontWeight: 800 }}>
             <Users size={24} strokeWidth={2} color="#000000" /> Who We Are
           </h2>
           <p style={{ color: '#1e293b', lineHeight: '1.7', fontSize: '0.9375rem' }}>
@@ -129,8 +131,8 @@ const About = () => {
           </p>
         </section>
 
-        <section className="about-stagger-card gsap-card card" style={{ backgroundColor: '#ffffff', color: '#000000', padding: '30px', borderRadius: '12px', border: '2px solid #000000' }}>
-          <h2 style={{ fontFamily: 'var(--font-heading)', color: '#000000', display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '20px', fontSize: '1.5rem' }}>
+        <section className="about-stagger-card gsap-card card" style={{ backgroundColor: '#ffffff', color: '#000000', padding: '30px', borderRadius: '24px', border: '2px solid #000000' }}>
+          <h2 style={{ fontFamily: 'var(--font-heading)', color: '#000000', display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '20px', fontSize: '1.5rem', fontWeight: 800 }}>
             <Target size={24} strokeWidth={2} color="#000000" /> Our Mission
           </h2>
           <ul style={{ color: '#1e293b', lineHeight: '1.7', listStyleType: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '8px', fontSize: '0.9375rem' }}>
@@ -143,20 +145,20 @@ const About = () => {
         </section>
 
         {/* Teacher Selection Card */}
-        <section className="about-stagger-card gsap-card card" style={{ backgroundColor: '#ffffff', color: '#000000', padding: '30px', borderRadius: '12px', border: '2px solid #000000', gridColumn: '1 / -1' }}>
-          <h2 style={{ fontFamily: 'var(--font-heading)', color: '#000000', display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '16px', fontSize: '1.5rem' }}>
-            <Medal size={24} strokeWidth={2} color="#000000" /> Teacher-Nominated Cohorts
+        <section className="about-stagger-card gsap-card card" style={{ backgroundColor: '#ffffff', color: '#000000', padding: '32px', borderRadius: '26px', border: '2px solid #000000', gridColumn: '1 / -1' }}>
+          <h2 style={{ fontFamily: 'var(--font-heading)', color: '#000000', display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '16px', fontSize: '1.6rem', fontWeight: 900 }}>
+            <Medal size={26} strokeWidth={2} color="#000000" /> Teacher-Nominated Cohorts
           </h2>
-          <p style={{ color: '#1e293b', lineHeight: '1.7', fontSize: '0.9375rem', marginBottom: '1.25rem' }}>
+          <p style={{ color: '#1e293b', lineHeight: '1.7', fontSize: '0.95rem', marginBottom: '1.5rem' }}>
             To maintain high standards of lab safety, focused mentorship, and quality engineering, membership in the STEM Club is not open to random sign-ups. Candidates are handpicked and recommended by Greets Public School science and computing faculty, specifically selecting students who exhibit genuine curiosity, consistent initiative, and an eagerness to build.
           </p>
-          <Link to="/join" className="btn btn-dark" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', padding: '0.625rem 1.25rem', fontSize: '0.875rem' }}>
+          <Link to="/join" className="btn btn-primary" style={{ padding: '0.85rem 1.85rem', fontSize: '0.875rem' }}>
             View Selection Criteria <ArrowRight size={16} />
           </Link>
         </section>
 
-        <section className="about-stagger-card gsap-card card" style={{ backgroundColor: '#ffffff', color: '#000000', padding: '30px', borderRadius: '12px', border: '2px solid #000000', gridColumn: '1 / -1' }}>
-          <h2 style={{ fontFamily: 'var(--font-heading)', color: '#000000', display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '20px', fontSize: '1.5rem' }}>
+        <section className="about-stagger-card gsap-card card" style={{ backgroundColor: '#ffffff', color: '#000000', padding: '32px', borderRadius: '26px', border: '2px solid #000000', gridColumn: '1 / -1' }}>
+          <h2 style={{ fontFamily: 'var(--font-heading)', color: '#000000', display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '20px', fontSize: '1.5rem', fontWeight: 800 }}>
             <Lightbulb size={24} strokeWidth={2} color="#000000" /> Our Vision
           </h2>
           <p style={{ color: '#1e293b', lineHeight: '1.7', fontSize: '1rem' }}>
@@ -167,26 +169,26 @@ const About = () => {
 
       {/* STEM Core Disciplines */}
       <section style={{ marginBottom: '60px' }}>
-        <h2 style={{ fontFamily: 'var(--font-heading)', fontSize: '2rem', textAlign: 'center', marginBottom: '30px', color: '#ffffff' }}>Core Disciplines</h2>
+        <h2 style={{ fontFamily: 'var(--font-heading)', fontSize: '2rem', textAlign: 'center', marginBottom: '30px', color: '#ffffff', fontWeight: 800 }}>Core Disciplines</h2>
         <div className="disciplines-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '20px' }}>
-          <div className="discipline-card gsap-card card" style={{ backgroundColor: '#ffffff', color: '#000000', padding: '24px', borderRadius: '12px', border: '2px solid #000000', display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', gap: '12px' }}>
+          <div className="discipline-card gsap-card card" style={{ backgroundColor: '#ffffff', color: '#000000', padding: '26px', borderRadius: '22px', border: '2px solid #000000', display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', gap: '12px' }}>
             <FlaskConical size={32} strokeWidth={2} color="#000000" />
-            <h3 style={{ fontFamily: 'var(--font-heading)', color: '#000000' }}>Science</h3>
+            <h3 style={{ fontFamily: 'var(--font-heading)', color: '#000000', fontWeight: 800 }}>Science</h3>
             <p style={{ color: '#334155', fontSize: '0.875rem' }}>Empirical experimentation, physics modeling, chemistry setups.</p>
           </div>
-          <div className="discipline-card gsap-card card" style={{ backgroundColor: '#ffffff', color: '#000000', padding: '24px', borderRadius: '12px', border: '2px solid #000000', display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', gap: '12px' }}>
+          <div className="discipline-card gsap-card card" style={{ backgroundColor: '#ffffff', color: '#000000', padding: '26px', borderRadius: '22px', border: '2px solid #000000', display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', gap: '12px' }}>
             <Binary size={32} strokeWidth={2} color="#000000" />
-            <h3 style={{ fontFamily: 'var(--font-heading)', color: '#000000' }}>Technology</h3>
+            <h3 style={{ fontFamily: 'var(--font-heading)', color: '#000000', fontWeight: 800 }}>Technology</h3>
             <p style={{ color: '#334155', fontSize: '0.875rem' }}>Software programming, cloud databases, web interfaces.</p>
           </div>
-          <div className="discipline-card gsap-card card" style={{ backgroundColor: '#ffffff', color: '#000000', padding: '24px', borderRadius: '12px', border: '2px solid #000000', display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', gap: '12px' }}>
+          <div className="discipline-card gsap-card card" style={{ backgroundColor: '#ffffff', color: '#000000', padding: '26px', borderRadius: '22px', border: '2px solid #000000', display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', gap: '12px' }}>
             <Wrench size={32} strokeWidth={2} color="#000000" />
-            <h3 style={{ fontFamily: 'var(--font-heading)', color: '#000000' }}>Engineering</h3>
+            <h3 style={{ fontFamily: 'var(--font-heading)', color: '#000000', fontWeight: 800 }}>Engineering</h3>
             <p style={{ color: '#334155', fontSize: '0.875rem' }}>Robotics chassis, mechanical gears, sensor circuitry.</p>
           </div>
-          <div className="discipline-card gsap-card card" style={{ backgroundColor: '#ffffff', color: '#000000', padding: '24px', borderRadius: '12px', border: '2px solid #000000', display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', gap: '12px' }}>
+          <div className="discipline-card gsap-card card" style={{ backgroundColor: '#ffffff', color: '#000000', padding: '26px', borderRadius: '22px', border: '2px solid #000000', display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', gap: '12px' }}>
             <Sigma size={32} strokeWidth={2} color="#000000" />
-            <h3 style={{ fontFamily: 'var(--font-heading)', color: '#000000' }}>Mathematics</h3>
+            <h3 style={{ fontFamily: 'var(--font-heading)', color: '#000000', fontWeight: 800 }}>Mathematics</h3>
             <p style={{ color: '#334155', fontSize: '0.875rem' }}>Algorithm design, sensor calibration curves, PID loop logic.</p>
           </div>
         </div>
@@ -194,7 +196,7 @@ const About = () => {
 
       {/* Club Values */}
       <section>
-        <h2 style={{ fontFamily: 'var(--font-heading)', fontSize: '2rem', textAlign: 'center', marginBottom: '30px', color: '#ffffff' }}>Club Values</h2>
+        <h2 style={{ fontFamily: 'var(--font-heading)', fontSize: '2rem', textAlign: 'center', marginBottom: '30px', color: '#ffffff', fontWeight: 800 }}>Club Values</h2>
         <div className="values-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: '20px' }}>
           {[
             { label: 'Curiosity', icon: Brain },
@@ -205,9 +207,9 @@ const About = () => {
           ].map((val, idx) => {
             const Icon = val.icon;
             return (
-              <div key={idx} className="value-card gsap-card card" style={{ backgroundColor: '#ffffff', color: '#000000', padding: '24px', borderRadius: '12px', border: '2px solid #000000', textAlign: 'center' }}>
+              <div key={idx} className="value-card gsap-card card" style={{ backgroundColor: '#ffffff', color: '#000000', padding: '24px', borderRadius: '20px', border: '2px solid #000000', textAlign: 'center' }}>
                 <Icon size={26} strokeWidth={2} color="#000000" style={{ marginBottom: '12px', display: 'inline-block' }} />
-                <h4 style={{ fontFamily: 'var(--font-heading)', fontSize: '1.1rem', color: '#000000' }}>{val.label}</h4>
+                <h4 style={{ fontFamily: 'var(--font-heading)', fontSize: '1.1rem', color: '#000000', fontWeight: 800 }}>{val.label}</h4>
               </div>
             );
           })}

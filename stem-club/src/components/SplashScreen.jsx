@@ -1,121 +1,155 @@
-import { useState, useEffect, useRef } from 'react';
-import { Sparkles } from 'lucide-react';
-
-const FUN_MESSAGES = [
-  "⚡ Charging high-voltage capacitors...",
-  "⚛️ Aligning subatomic particle arrays...",
-  "🤖 Calibrating Greets Robotics Core...",
-  "🚀 Calculating orbital trajectory vectors...",
-  "🧠 Training neural models on CBSE syllabus...",
-  "🔭 Focusing optical spectrum sensors...",
-  "🔬 Synthesizing lab reagent formulas...",
-  "🎉 ALL SYSTEMS OPERATIONAL — WELCOME TO THE LAB!"
-];
-
-const FLOATING_STEM_ITEMS = [
-  { id: 1, text: 'π', x: '12%', y: '18%', size: '1.75rem', delay: 0 },
-  { id: 2, text: '∫ f(x)dx', x: '82%', y: '16%', size: '1.25rem', delay: 0.4 },
-  { id: 3, text: 'E=mc²', x: '8%', y: '72%', size: '1.25rem', delay: 0.8 },
-  { id: 4, text: 'λ=h/p', x: '86%', y: '74%', size: '1.25rem', delay: 1.2 },
-  { id: 5, text: '01101001', x: '18%', y: '45%', size: '0.875rem', delay: 0.6 },
-  { id: 6, text: '∑ i=1', x: '78%', y: '42%', size: '1.25rem', delay: 1.0 },
-  { id: 7, text: 'ΔV=IR', x: '30%', y: '84%', size: '1rem', delay: 0.3 },
-  { id: 8, text: 'F=ma', x: '68%', y: '86%', size: '1.125rem', delay: 0.7 },
-];
+import React, { useState, useEffect, useRef } from 'react';
+import gsap from 'gsap';
 
 export default function SplashScreen({ onFinish }) {
-  const [fading, setFading] = useState(false);
   const [removed, setRemoved] = useState(false);
-  const [progress, setProgress] = useState(0);
-  const [messageIndex, setMessageIndex] = useState(0);
-  const [clicks, setClicks] = useState([]);
-  const [poppedItems, setPoppedItems] = useState({});
-  const intervalRef = useRef(null);
+  const containerRef = useRef(null);
+  const cardRef = useRef(null);
+  const ringRef = useRef(null);
+  const sheenRef = useRef(null);
+  const text1Ref = useRef(null);
+  const text2Ref = useRef(null);
+  const badgeRef = useRef(null);
+  const skipHintRef = useRef(null);
 
-  const completeSplash = () => {
-    setFading(true);
-    setTimeout(() => {
-      setRemoved(true);
-      sessionStorage.setItem('gps_stem_splash_seen', 'true');
-      if (onFinish) onFinish();
-    }, 450);
+  const finishSplash = () => {
+    if (!containerRef.current) return;
+    gsap.killTweensOf(containerRef.current);
+    gsap.to(containerRef.current, {
+      opacity: 0,
+      scale: 1.06,
+      duration: 0.3,
+      ease: 'power2.inOut',
+      onComplete: () => {
+        setRemoved(true);
+        if (onFinish) onFinish();
+      }
+    });
   };
 
   useEffect(() => {
-    const hasSeenSplash = sessionStorage.getItem('gps_stem_splash_seen');
-    if (hasSeenSplash) {
-      setRemoved(true);
-      if (onFinish) onFinish();
-      return;
-    }
+    // Triggers on EVERY refresh as requested
+    const ctx = gsap.context(() => {
+      // 1. Set initial states for animation
+      gsap.set([cardRef.current, text1Ref.current, text2Ref.current, badgeRef.current, skipHintRef.current], {
+        opacity: 0
+      });
+      gsap.set(cardRef.current, { scale: 0.15, rotation: -20 });
+      gsap.set(ringRef.current, { scale: 0.4, opacity: 0, rotation: 0 });
 
-    const startTime = Date.now();
-    const duration = 2200;
+      // 2. Orchestrated master timeline
+      const tl = gsap.timeline({
+        onComplete: () => {
+          gsap.to(containerRef.current, {
+            opacity: 0,
+            scale: 1.05,
+            duration: 0.45,
+            ease: 'power2.inOut',
+            onComplete: () => {
+              setRemoved(true);
+              if (onFinish) onFinish();
+            }
+          });
+        }
+      });
 
-    intervalRef.current = setInterval(() => {
-      const elapsed = Date.now() - startTime;
-      const pct = Math.min(100, Math.round((elapsed / duration) * 100));
-      setProgress(pct);
+      tl
+        // Card pops in with bouncy spring physics
+        .to(cardRef.current, {
+          opacity: 1,
+          scale: 1,
+          rotation: 0,
+          duration: 0.7,
+          ease: 'back.out(1.8)'
+        }, 0.1)
 
-      const msgStep = Math.floor((pct / 100) * (FUN_MESSAGES.length - 1));
-      setMessageIndex(msgStep);
+        // Dashed orbit ring expands behind card
+        .to(ringRef.current, {
+          opacity: 0.75,
+          scale: 1,
+          duration: 0.5,
+          ease: 'power2.out'
+        }, 0.25)
 
-      if (pct >= 100) {
-        clearInterval(intervalRef.current);
-        setTimeout(() => {
-          completeSplash();
-        }, 350);
-      }
-    }, 40);
+        // Specular light sheen sweeps across white bird card
+        .fromTo(sheenRef.current,
+          { left: '-130%' },
+          { left: '170%', duration: 0.65, ease: 'power2.inOut' },
+          0.5
+        )
+
+        // School eyebrow text slides down
+        .fromTo(text1Ref.current,
+          { opacity: 0, y: -12, letterSpacing: '0.1em' },
+          { opacity: 1, y: 0, letterSpacing: '0.28em', duration: 0.4, ease: 'power3.out' },
+          0.6
+        )
+
+        // STEM CLUB title punches in
+        .fromTo(text2Ref.current,
+          { opacity: 0, scale: 0.8, y: 15 },
+          { opacity: 1, scale: 1, y: 0, duration: 0.45, ease: 'back.out(1.6)' },
+          0.75
+        )
+
+        // Innovation badge pops up
+        .fromTo(badgeRef.current,
+          { opacity: 0, y: 12, scale: 0.9 },
+          { opacity: 1, y: 0, scale: 1, duration: 0.35, ease: 'power2.out' },
+          0.9
+        )
+
+        // Skip hint gently fades in
+        .to(skipHintRef.current, {
+          opacity: 0.7,
+          duration: 0.3
+        }, 1.1)
+
+        // Hold display so user sees the animated brand
+        .to({}, { duration: 1.1 });
+
+      // Continuous slow rotation for orbit ring
+      gsap.to(ringRef.current, {
+        rotation: 360,
+        duration: 14,
+        repeat: -1,
+        ease: 'none'
+      });
+    }, containerRef);
+
+    const handleKey = () => finishSplash();
+    window.addEventListener('keydown', handleKey);
 
     return () => {
-      if (intervalRef.current) clearInterval(intervalRef.current);
+      ctx.revert();
+      window.removeEventListener('keydown', handleKey);
     };
-  }, [onFinish]);
-
-  const handleScreenClick = (e) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-    const newSpark = { id: Date.now() + Math.random(), x, y };
-    setClicks((prev) => [...prev.slice(-6), newSpark]);
-    setProgress((prev) => Math.min(99, prev + 6));
-  };
-
-  const popItem = (id, e) => {
-    e.stopPropagation();
-    setPoppedItems((prev) => ({ ...prev, [id]: true }));
-    setProgress((prev) => Math.min(99, prev + 10));
-  };
+  }, []);
 
   if (removed) return null;
 
   return (
     <div
-      onClick={handleScreenClick}
+      ref={containerRef}
+      onClick={finishSplash}
       style={{
         position: 'fixed',
         inset: 0,
         zIndex: 99999,
-        backgroundColor: '#2596be',
+        background: 'radial-gradient(circle at center, #2baad7 0%, #2596be 65%, #1b7a9e 100%)',
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
-        transition: 'opacity 0.45s cubic-bezier(0.16, 1, 0.3, 1), transform 0.45s ease',
-        opacity: fading ? 0 : 1,
-        transform: fading ? 'scale(1.05)' : 'scale(1)',
-        pointerEvents: fading ? 'none' : 'auto',
         padding: '1.5rem',
-        textAlign: 'center',
-        cursor: 'crosshair',
-        overflow: 'hidden',
-        userSelect: 'none'
+        cursor: 'pointer',
+        userSelect: 'none',
+        overflow: 'hidden'
       }}
       role="status"
-      aria-label="Loading Greets Public School STEM Club"
+      aria-label="Greets STEM Club Loading Screen"
     >
-      {/* Background Matrix Grid */}
+      {/* Background Kinetic Circuit Grid */}
       <div
         style={{
           position: 'absolute',
@@ -125,345 +159,165 @@ export default function SplashScreen({ onFinish }) {
             linear-gradient(90deg, rgba(255, 255, 255, 0.08) 1px, transparent 1px)
           `,
           backgroundSize: '40px 40px',
-          pointerEvents: 'none',
-          opacity: 0.6
+          pointerEvents: 'none'
         }}
       />
 
-      {/* Interactive Click Sparks */}
-      {clicks.map((spark) => (
-        <div
-          key={spark.id}
-          className="splash-spark"
-          style={{
-            position: 'absolute',
-            left: spark.x,
-            top: spark.y,
-            width: '24px',
-            height: '24px',
-            borderRadius: '50%',
-            border: '2px solid #ffffff',
-            transform: 'translate(-50%, -50%)',
-            pointerEvents: 'none'
-          }}
-        />
-      ))}
-
-      {/* Floating STEM Elements */}
-      {FLOATING_STEM_ITEMS.map((item) => {
-        if (poppedItems[item.id]) return null;
-        return (
-          <button
-            key={item.id}
-            onClick={(e) => popItem(item.id, e)}
-            title="Tap to boost lab power!"
-            style={{
-              position: 'absolute',
-              left: item.x,
-              top: item.y,
-              background: '#ffffff',
-              color: '#000000',
-              border: '2px solid #000000',
-              borderRadius: '8px',
-              padding: '0.25rem 0.6rem',
-              fontFamily: 'var(--font-mono)',
-              fontSize: item.size,
-              fontWeight: 800,
-              boxShadow: '0 6px 16px rgba(0,0,0,0.2)',
-              cursor: 'pointer',
-              animation: `floatStem 3.5s ease-in-out infinite`,
-              animationDelay: `${item.delay}s`,
-              zIndex: 2,
-              transformOrigin: 'center center'
-            }}
-          >
-            {item.text}
-          </button>
-        );
-      })}
-
-      {/* Main Center Console */}
       <div
         style={{
           position: 'relative',
-          zIndex: 5,
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
-          gap: '1.25rem',
-          maxWidth: '540px',
+          gap: '1.75rem',
+          maxWidth: '520px',
           width: '100%'
         }}
       >
-        {/* Crest Logo with Orbiting Electron Ring */}
-        <div style={{ position: 'relative', width: '150px', height: '150px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-          {/* Outer Orbit Ring 1 */}
+        {/* Animated Mascot Showcase with Orbit Ring */}
+        <div style={{ position: 'relative', width: '240px', height: '240px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+          {/* Dashed Orbital Tech Ring */}
           <div
+            ref={ringRef}
             style={{
               position: 'absolute',
-              inset: '-10px',
+              width: '230px',
+              height: '230px',
               borderRadius: '50%',
-              border: '2px dashed #ffffff',
-              animation: 'spinClockwise 12s linear infinite',
+              border: '2px dashed rgba(255, 255, 255, 0.65)',
               pointerEvents: 'none'
             }}
           />
 
-          {/* Outer Orbit Ring 2 */}
+          {/* Glowing Aura Ring */}
           <div
             style={{
               position: 'absolute',
-              inset: '-20px',
-              borderRadius: '50%',
-              border: '1.5px solid rgba(255, 255, 255, 0.4)',
-              animation: 'spinCounter 16s linear infinite',
+              width: '190px',
+              height: '190px',
+              borderRadius: '36px',
+              background: 'rgba(255, 255, 255, 0.25)',
+              filter: 'blur(20px)',
               pointerEvents: 'none'
             }}
-          >
-            {/* Small Orbiting Electron Node */}
-            <div
-              style={{
-                position: 'absolute',
-                top: '-5px',
-                left: '50%',
-                width: '10px',
-                height: '10px',
-                backgroundColor: '#ffffff',
-                border: '2px solid #000000',
-                borderRadius: '50%',
-                transform: 'translateX(-50%)'
-              }}
-            />
-          </div>
+          />
 
-          {/* Official Logo Card */}
+          {/* Crisp Pure White Mascot Card (Pure White Background for Bird) */}
           <div
+            ref={cardRef}
             style={{
-              width: '120px',
-              height: '120px',
-              borderRadius: '24px',
+              position: 'relative',
+              width: '180px',
+              height: '180px',
               backgroundColor: '#ffffff',
-              padding: '12px',
+              borderRadius: '34px',
+              border: '3px solid #000000',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              boxShadow: '0 16px 36px rgba(0, 0, 0, 0.3)',
-              border: '3px solid #000000',
-              animation: 'logoBounce 2s ease-in-out infinite'
+              padding: '14px',
+              boxShadow: '0 20px 48px rgba(0, 0, 0, 0.28), 0 0 0 6px rgba(255, 255, 255, 0.4)',
+              overflow: 'hidden',
+              zIndex: 2
             }}
           >
+            {/* The Bird Mascot Artwork */}
             <img
               src="/assets/stem-club-logo.png"
-              alt="Greets Public School STEM Club Official Logo"
+              alt="GPS STEM Club Mascot Bird"
               style={{
                 width: '100%',
                 height: '100%',
-                objectFit: 'contain'
+                objectFit: 'contain',
+                display: 'block'
+              }}
+            />
+
+            {/* Specular Light Sheen Sweeping Across White Card */}
+            <div
+              ref={sheenRef}
+              style={{
+                position: 'absolute',
+                top: 0,
+                left: '-130%',
+                width: '100%',
+                height: '100%',
+                background: 'linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.85), transparent)',
+                transform: 'skewX(-25deg)',
+                pointerEvents: 'none'
               }}
             />
           </div>
         </div>
 
-        {/* Brand Headings */}
-        <div>
+        {/* Minimalist Studio Typography */}
+        <div style={{ textAlign: 'center', position: 'relative', zIndex: 2 }}>
           <div
+            ref={text1Ref}
             style={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: '6px',
-              padding: '0.2rem 0.75rem',
-              backgroundColor: '#000000',
-              color: '#ffffff',
-              borderRadius: '999px',
               fontFamily: 'var(--font-mono)',
-              fontSize: '0.75rem',
+              fontSize: '0.8125rem',
               fontWeight: 800,
-              letterSpacing: '0.12em',
+              color: 'rgba(255, 255, 255, 0.92)',
               textTransform: 'uppercase',
-              marginBottom: '0.5rem',
-              border: '1px solid #ffffff'
+              marginBottom: '0.35rem'
             }}
           >
-            <Sparkles size={12} /> Greets Public School
+            GREETS PUBLIC SCHOOL
           </div>
 
           <h1
+            ref={text2Ref}
             style={{
               fontFamily: 'var(--font-heading)',
-              fontSize: 'clamp(2rem, 6vw, 3rem)',
+              fontSize: 'clamp(2.25rem, 7vw, 3rem)',
               fontWeight: 900,
               color: '#ffffff',
-              letterSpacing: '0.04em',
-              margin: '0 0 0.25rem 0',
+              letterSpacing: '0.06em',
+              textTransform: 'uppercase',
+              margin: 0,
               textShadow: '0 4px 16px rgba(0, 0, 0, 0.25)'
             }}
           >
             STEM CLUB
           </h1>
 
-          <p
-            style={{
-              fontFamily: 'var(--font-mono)',
-              fontSize: '0.8125rem',
-              color: '#ffffff',
-              letterSpacing: '0.1em',
-              textTransform: 'uppercase',
-              margin: 0,
-              fontWeight: 600
-            }}
-          >
-            Science • Technology • Engineering • Math
-          </p>
-        </div>
-
-        {/* Dynamic Fun Terminal Boot Message */}
-        <div
-          style={{
-            backgroundColor: '#ffffff',
-            color: '#000000',
-            border: '2px solid #000000',
-            borderRadius: '12px',
-            padding: '0.625rem 1.25rem',
-            width: '100%',
-            maxWidth: '440px',
-            boxShadow: '0 8px 24px rgba(0,0,0,0.18)',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'space-between',
-            gap: '0.75rem'
-          }}
-        >
-          <span
-            style={{
-              fontFamily: 'var(--font-mono)',
-              fontSize: '0.8125rem',
-              fontWeight: 700,
-              textAlign: 'left',
-              flex: 1,
-              whiteSpace: 'nowrap',
-              overflow: 'hidden',
-              textOverflow: 'ellipsis'
-            }}
-          >
-            {FUN_MESSAGES[messageIndex]}
-          </span>
-          <span
-            style={{
-              fontFamily: 'var(--font-mono)',
-              fontSize: '0.875rem',
-              fontWeight: 900,
-              backgroundColor: '#000000',
-              color: '#ffffff',
-              padding: '0.2rem 0.5rem',
-              borderRadius: '6px',
-              minWidth: '46px',
-              textAlign: 'center'
-            }}
-          >
-            {progress}%
-          </span>
-        </div>
-
-        {/* High Energy Animated Progress Bar */}
-        <div
-          style={{
-            width: '100%',
-            maxWidth: '440px',
-            height: '10px',
-            backgroundColor: 'rgba(0, 0, 0, 0.25)',
-            border: '2px solid #000000',
-            borderRadius: '999px',
-            overflow: 'hidden',
-            position: 'relative'
-          }}
-        >
           <div
+            ref={badgeRef}
             style={{
-              height: '100%',
-              width: `${progress}%`,
-              backgroundColor: '#ffffff',
-              transition: 'width 0.08s linear',
+              display: 'inline-block',
+              marginTop: '0.85rem',
+              padding: '0.35rem 1.15rem',
               borderRadius: '999px',
-              boxShadow: '0 0 12px #ffffff'
-            }}
-          />
-        </div>
-
-        {/* Fun Interactive Hint & Skip Button */}
-        <div
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'space-between',
-            width: '100%',
-            maxWidth: '440px',
-            marginTop: '0.5rem'
-          }}
-        >
-          <span
-            style={{
-              fontFamily: 'var(--font-mono)',
-              fontSize: '0.6875rem',
-              color: '#ffffff',
-              letterSpacing: '0.04em',
-              textAlign: 'left'
-            }}
-          >
-            💡 <em>Click anywhere to generate sparks!</em>
-          </span>
-
-          <button
-            type="button"
-            onClick={(e) => {
-              e.stopPropagation();
-              completeSplash();
-            }}
-            style={{
-              background: '#ffffff',
+              backgroundColor: '#ffffff',
               color: '#000000',
-              border: '2px solid #000000',
-              borderRadius: '100px',
-              padding: '0.35rem 0.85rem',
               fontFamily: 'var(--font-mono)',
               fontSize: '0.75rem',
               fontWeight: 800,
-              cursor: 'pointer',
-              boxShadow: '0 4px 10px rgba(0,0,0,0.15)',
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: '4px'
+              letterSpacing: '0.12em',
+              textTransform: 'uppercase',
+              border: '2px solid #000000',
+              boxShadow: '0 4px 14px rgba(0, 0, 0, 0.15)'
             }}
           >
-            Enter Lab Now ➔
-          </button>
+            INNOVATION LABS • KOCHI
+          </div>
+        </div>
+
+        {/* Subtle Skip Hint */}
+        <div
+          ref={skipHintRef}
+          style={{
+            fontFamily: 'var(--font-mono)',
+            fontSize: '0.6875rem',
+            color: 'rgba(255, 255, 255, 0.8)',
+            letterSpacing: '0.08em',
+            textTransform: 'uppercase'
+          }}
+        >
+          Click or press any key to enter
         </div>
       </div>
-
-      <style>{`
-        @keyframes spinClockwise {
-          0% { transform: rotate(0deg); }
-          100% { transform: rotate(360deg); }
-        }
-        @keyframes spinCounter {
-          0% { transform: rotate(360deg); }
-          100% { transform: rotate(0deg); }
-        }
-        @keyframes logoBounce {
-          0%, 100% { transform: translateY(0) scale(1); }
-          50% { transform: translateY(-8px) scale(1.03); }
-        }
-        @keyframes floatStem {
-          0%, 100% { transform: translateY(0px) rotate(0deg); }
-          50% { transform: translateY(-12px) rotate(4deg); }
-        }
-        .splash-spark {
-          animation: sparkBurst 0.6s ease-out forwards;
-        }
-        @keyframes sparkBurst {
-          0% { transform: translate(-50%, -50%) scale(0.2); opacity: 1; }
-          100% { transform: translate(-50%, -50%) scale(3.5); opacity: 0; }
-        }
-      `}</style>
     </div>
   );
 }

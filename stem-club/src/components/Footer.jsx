@@ -10,8 +10,8 @@ export default function Footer() {
         <div className="footer-grid">
           <div className="footer-brand">
             <Link to="/" className="nav-logo" style={{ marginBottom: '0.75rem' }} aria-label="STEM Club Home">
-              <span className="nav-logo-icon" style={{ width: '38px', height: '38px', padding: '3px', background: '#ffffff', borderRadius: '8px', border: '1.5px solid #ffffff', overflow: 'hidden', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                <img src="/assets/stem-club-logo.png" alt="STEM Club Logo" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
+              <span className="nav-logo-icon" style={{ width: '44px', height: '44px', background: '#ffffff', borderRadius: '50%', border: '2px solid #000000', overflow: 'hidden', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, padding: '2px' }}>
+                <img src="/assets/stem-club-logo.png" alt="STEM Club Logo" style={{ width: '90%', height: '90%', objectFit: 'contain' }} />
               </span>
               <span>STEM CLUB</span>
             </Link>

@@ -216,16 +216,16 @@ const JoinUs = () => {
           </div>
 
           {/* Expression of Interest Form */}
-          <div className="card" style={{ maxWidth: '820px', margin: '0 auto', backgroundColor: '#ffffff', boxShadow: '0 16px 40px rgba(0,0,0,0.18)', borderRadius: '16px', border: '2px solid #000000' }}>
-            <div className="card-body" style={{ padding: '2.5rem' }}>
-              <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
-                <span className="tag" style={{ background: '#000000', color: '#ffffff', marginBottom: '0.75rem' }}>
+          <div className="card" style={{ maxWidth: '820px', margin: '0 auto', backgroundColor: '#ffffff', color: '#000000', boxShadow: '0 20px 50px rgba(0,0,0,0.22)', borderRadius: '26px', border: '3px solid #000000' }}>
+            <div className="card-body" style={{ padding: 'clamp(1.5rem, 5vw, 2.75rem)', color: '#000000' }}>
+              <div style={{ textAlign: 'center', marginBottom: '2.25rem' }}>
+                <span className="tag" style={{ background: '#000000', color: '#ffffff', marginBottom: '0.75rem', borderRadius: '999px' }}>
                   FACULTY REVIEW FORM
                 </span>
-                <h2 style={{ color: '#000000', fontFamily: 'var(--font-heading)', fontSize: '2rem', margin: '0.5rem 0 0.5rem', fontWeight: 900 }}>
+                <h2 style={{ color: '#000000', fontFamily: 'var(--font-heading)', fontSize: '2.25rem', margin: '0.5rem 0 0.5rem', fontWeight: 900 }}>
                   Expression of Interest
                 </h2>
-                <p style={{ color: '#475569', fontSize: '0.9375rem', maxWidth: '600px', margin: '0 auto' }}>
+                <p style={{ color: '#334155', fontSize: '0.9375rem', maxWidth: '600px', margin: '0 auto' }}>
                   Fill out this profile to bring your keen STEM interest to the attention of your teachers and the STEM Club advisory panel.
                 </p>
               </div>
@@ -233,7 +233,7 @@ const JoinUs = () => {
               <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
                 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 300px), 1fr))', gap: '1.5rem' }}>
                   <div className="form-group">
-                    <label className="form-label" htmlFor="name">Student Full Name *</label>
+                    <label className="form-label" htmlFor="name" style={{ color: '#000000' }}>Student Full Name *</label>
                     <input 
                       type="text" 
                       id="name" 
@@ -247,7 +247,7 @@ const JoinUs = () => {
                   </div>
                   
                   <div className="form-group">
-                    <label className="form-label" htmlFor="grade">Class / Grade *</label>
+                    <label className="form-label" htmlFor="grade" style={{ color: '#000000' }}>Class / Grade *</label>
                     <select 
                       id="grade" 
                       name="grade" 
@@ -269,7 +269,7 @@ const JoinUs = () => {
                 </div>
 
                 <div className="form-group">
-                  <label className="form-label" htmlFor="teacherName">
+                  <label className="form-label" htmlFor="teacherName" style={{ color: '#000000' }}>
                     Current Science / Math / CS Teacher *
                   </label>
                   <input 
@@ -281,14 +281,14 @@ const JoinUs = () => {
                     onChange={handleInputChange}
                     placeholder="e.g. Mrs. Lakshmi (Physics) / Mr. Thomas (Computer Science)"
                   />
-                  <p className="form-helper" style={{ color: '#64748b', fontSize: '0.8125rem', marginTop: '0.25rem' }}>
+                  <p className="form-helper" style={{ color: '#475569', fontSize: '0.8125rem', marginTop: '0.35rem' }}>
                     Your subject teacher will be consulted regarding your classroom curiosity and lab participation.
                   </p>
                   {errors.teacherName && <span style={{ color: '#dc2626', fontSize: '0.8125rem', marginTop: '0.4rem', display: 'flex', alignItems: 'center', gap: '0.25rem', fontWeight: 600 }}><AlertCircle size={14} /> {errors.teacherName}</span>}
                 </div>
 
                 <div className="form-group">
-                  <label className="form-label">Areas of Keen Interest *</label>
+                  <label className="form-label" style={{ color: '#000000' }}>Areas of Keen Interest *</label>
                   <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem' }}>
                     {interestOptions.map(interest => {
                       const isSelected = formData.interests.includes(interest);
@@ -298,12 +298,12 @@ const JoinUs = () => {
                           type="button"
                           onClick={() => toggleInterest(interest)}
                           style={{
-                            padding: '0.5rem 1rem',
-                            borderRadius: '2rem',
+                            padding: '0.5rem 1.15rem',
+                            borderRadius: '999px',
                             border: `2px solid ${isSelected ? '#000000' : '#cbd5e1'}`,
                             backgroundColor: isSelected ? '#000000' : '#ffffff',
                             color: isSelected ? '#ffffff' : '#000000',
-                            fontWeight: isSelected ? '700' : '600',
+                            fontWeight: isSelected ? '800' : '600',
                             fontSize: '0.875rem',
                             cursor: 'pointer',
                             transition: 'all 0.15s ease'
@@ -318,7 +318,7 @@ const JoinUs = () => {
                 </div>
 
                 <div className="form-group">
-                  <label className="form-label" htmlFor="skills">Personal Projects or Hobby Experiments (Optional)</label>
+                  <label className="form-label" htmlFor="skills" style={{ color: '#000000' }}>Personal Projects or Hobby Experiments (Optional)</label>
                   <input 
                     type="text" 
                     id="skills" 
@@ -331,7 +331,7 @@ const JoinUs = () => {
                 </div>
 
                 <div className="form-group">
-                  <label className="form-label" htmlFor="whyJoin">Why are you keenly interested in STEM? *</label>
+                  <label className="form-label" htmlFor="whyJoin" style={{ color: '#000000' }}>Why are you keenly interested in STEM? *</label>
                   <textarea 
                     id="whyJoin" 
                     name="whyJoin" 
@@ -345,7 +345,7 @@ const JoinUs = () => {
                 </div>
 
                 <div className="form-group">
-                  <label className="form-label" htmlFor="projectIdea">What is a project idea you would love to build? (Optional)</label>
+                  <label className="form-label" htmlFor="projectIdea" style={{ color: '#000000' }}>What is a project idea you would love to build? (Optional)</label>
                   <textarea 
                     id="projectIdea" 
                     name="projectIdea" 
@@ -359,20 +359,20 @@ const JoinUs = () => {
 
                 <div style={{
                   backgroundColor: '#f8fafc',
-                  border: '1px solid #e2e8f0',
-                  borderRadius: '8px',
-                  padding: '1rem',
-                  fontSize: '0.8125rem',
-                  color: '#64748b',
-                  lineHeight: 1.5
+                  border: '2px solid #000000',
+                  borderRadius: '16px',
+                  padding: '1.25rem',
+                  fontSize: '0.875rem',
+                  color: '#334155',
+                  lineHeight: 1.6
                 }}>
                   <strong style={{ color: '#000000' }}>Faculty Review Note:</strong> Submission of this form registers your candidacy. Final selection is decided by teacher recommendation and lab space availability.
                 </div>
 
                 <button 
                   type="submit" 
-                  className="btn btn-dark"
-                  style={{ width: '100%', marginTop: '0.5rem', display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '0.5rem', fontSize: '1rem', padding: '0.875rem 1.5rem' }}
+                  className="btn btn-primary"
+                  style={{ width: '100%', marginTop: '0.75rem', display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '0.5rem', fontSize: '1rem', padding: '1rem 2rem', borderRadius: '999px' }}
                   disabled={isSubmitting}
                 >
                   {isSubmitting ? 'Registering Interest...' : (

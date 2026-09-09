@@ -105,7 +105,7 @@ export default function Projects() {
                 display: 'flex',
                 flexDirection: 'column',
                 background: '#ffffff',
-                borderRadius: '12px',
+                borderRadius: '24px',
                 border: '2px solid #000000',
                 overflow: 'hidden'
               }}
@@ -116,7 +116,7 @@ export default function Projects() {
                   title={project.title}
                   category={project.category}
                   color="#2596be"
-                  style={{ borderRadius: '10px 10px 0 0', borderBottom: '2px solid #000000' }}
+                  style={{ borderRadius: '22px 22px 0 0', borderBottom: '2px solid #000000' }}
                 />
                 <div style={{
                   position: 'absolute',
@@ -125,10 +125,10 @@ export default function Projects() {
                   display: 'flex',
                   gap: '0.5rem'
                 }}>
-                  <span className="tag" style={{ background: '#000000', color: '#ffffff', border: '1px solid #000000' }}>
+                  <span className="tag" style={{ background: '#000000', color: '#ffffff', border: '1px solid #000000', borderRadius: '999px' }}>
                     {project.category}
                   </span>
-                  <span className="tag" style={{ background: '#2596be', color: '#ffffff', border: '1px solid #2596be' }}>
+                  <span className="tag" style={{ background: '#2596be', color: '#ffffff', border: '1px solid #2596be', borderRadius: '999px' }}>
                     {project.status}
                   </span>
                 </div>
@@ -160,9 +160,9 @@ export default function Projects() {
                     <span key={tech} style={{
                       fontFamily: 'var(--font-mono)',
                       fontSize: '0.6875rem',
-                      fontWeight: 600,
-                      padding: '0.2rem 0.5rem',
-                      borderRadius: '4px',
+                      fontWeight: 700,
+                      padding: '0.25rem 0.6rem',
+                      borderRadius: '999px',
                       background: '#f1f5f9',
                       color: '#0f172a',
                       border: '1px solid #cbd5e1'
@@ -174,16 +174,17 @@ export default function Projects() {
 
                 <Link
                   to={`/projects/${project.id}`}
-                  className="btn btn-dark"
+                  className="btn btn-primary"
                   style={{
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
                     gap: '0.5rem',
                     width: '100%',
-                    padding: '0.75rem 1rem',
+                    padding: '0.85rem 1.25rem',
                     textDecoration: 'none',
-                    fontSize: '0.8125rem'
+                    fontSize: '0.8125rem',
+                    borderRadius: '999px'
                   }}
                 >
                   View Full Project <ArrowRight size={15} />

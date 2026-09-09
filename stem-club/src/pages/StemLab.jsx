@@ -129,7 +129,7 @@ const StemLab = () => {
                   background: '#ffffff',
                   color: '#000000',
                   border: '2px solid #000000',
-                  borderRadius: '12px',
+                  borderRadius: '24px',
                   display: 'flex',
                   flexDirection: 'column',
                   gap: '1rem',
@@ -139,7 +139,7 @@ const StemLab = () => {
                 <div style={{
                   width: '56px',
                   height: '56px',
-                  borderRadius: '10px',
+                  borderRadius: '14px',
                   backgroundColor: '#000000',
                   display: 'flex',
                   alignItems: 'center',
@@ -199,7 +199,7 @@ const StemLab = () => {
               const isExpanded = expandedCategory === categoryGroup.category;
               
               return (
-                <div key={index} className="gsap-card card" style={{ background: '#ffffff', border: '2px solid #000000', borderRadius: '10px', overflow: 'hidden' }}>
+                <div key={index} className="gsap-card card" style={{ background: '#ffffff', border: '2px solid #000000', borderRadius: '20px', overflow: 'hidden' }}>
                   <button 
                     onClick={() => toggleCategory(categoryGroup.category)}
                     style={{
