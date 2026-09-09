@@ -330,9 +330,9 @@ function HeroSection() {
             className="hero-description"
             style={{ color: '#ffffff', fontSize: '1.1875rem', lineHeight: 1.7, marginTop: '1.75rem', maxWidth: '640px' }}
           >
-            STEM stands for Science, Technology, Engineering, and Maths. An innovation ecosystem at Greets Public School where students build, experiment, and lead with curious minds.
+            
           </p>
-
+            An innovation organization at Greets Public School exploring science, technology, engineering and mathematics through hands-on projects, experimentation and collaboration. Membership is selective and based on faculty teacher nomination.
           <div ref={buttonsRef} style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem', marginTop: '2rem' }}>
             <Link to="/projects" className="btn btn-primary" style={{ padding: '0.9rem 2rem' }}>
               Explore Projects <ArrowRight size={16} />
