@@ -155,27 +155,34 @@ function HeroSection() {
       // 1. Initial entrance timeline with kinetic typography reveals
       const tl = gsap.timeline({ defaults: { ease: 'power4.out' } });
       
-      tl.from([word1Ref.current, word2Ref.current, word3Ref.current], {
-        yPercent: 120,
-        opacity: 0,
-        stagger: 0.12,
-        duration: 0.8,
-        ease: 'power3.out'
-      }, 0.1)
-        .from(descRef.current, { y: 30, opacity: 0, duration: 0.6 }, '-=0.4')
-        .from(buttonsRef.current, { y: 20, opacity: 0, duration: 0.5 }, '-=0.3')
-        .from([floatLayer1Ref.current, floatLayer2Ref.current, floatLayer3Ref.current], {
-          scale: 0.7,
-          opacity: 0,
-          stagger: 0.15,
-          duration: 0.8,
-          ease: 'back.out(1.4)'
-        }, '-=0.5');
+      tl.fromTo(
+        [word1Ref.current, word2Ref.current, word3Ref.current],
+        { yPercent: 120, opacity: 0 },
+        { yPercent: 0, opacity: 1, stagger: 0.12, duration: 0.7, ease: 'power3.out', clearProps: 'all' },
+        0.1
+      )
+        .fromTo(
+          descRef.current,
+          { y: 25, opacity: 0 },
+          { y: 0, opacity: 1, duration: 0.5, clearProps: 'all' },
+          '-=0.3'
+        )
+        .fromTo(
+          buttonsRef.current,
+          { y: 18, opacity: 0 },
+          { y: 0, opacity: 1, duration: 0.4, clearProps: 'all' },
+          '-=0.2'
+        )
+        .fromTo(
+          [floatLayer1Ref.current, floatLayer2Ref.current, floatLayer3Ref.current],
+          { scale: 0.7, opacity: 0 },
+          { scale: 1, opacity: 1, stagger: 0.12, duration: 0.7, ease: 'back.out(1.4)' },
+          '-=0.4'
+        );
 
-      // 2. Parallax ScrollTrigger for foreground content
+      // 2. Parallax ScrollTrigger for foreground content (pure motion, no fading)
       gsap.to(contentRef.current, {
-        y: -90,
-        opacity: 0.15,
+        y: -70,
         ease: 'none',
         scrollTrigger: {
           trigger: sectionRef.current,

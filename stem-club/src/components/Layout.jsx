@@ -1,5 +1,5 @@
 import { Outlet, useLocation } from 'react-router-dom';
-import { useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import Navbar from './Navbar';
 import Footer from './Footer';
@@ -7,10 +7,13 @@ import ScrollProgress from './ScrollProgress';
 import FloatingContact from './FloatingContact';
 import CookieBanner from './CookieBanner';
 import SplashScreen from './SplashScreen';
+import MiniGameModal from './MiniGameModal';
 
 export default function Layout() {
   const location = useLocation();
   const pageRef = useRef(null);
+  const [isGameOpen, setIsGameOpen] = useState(false);
+  const keySequenceRef = useRef('');
 
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
@@ -23,6 +26,38 @@ export default function Layout() {
       );
     }
   }, [location.pathname]);
+
+  // Global Easter Egg listeners
+  useEffect(() => {
+    const handleCustomOpen = () => {
+      setIsGameOpen(true);
+    };
+
+    const handleKeydown = (e) => {
+      // Ignore keystrokes inside input / textarea
+      if (['INPUT', 'TEXTAREA'].includes(e.target.tagName)) return;
+
+      keySequenceRef.current = (keySequenceRef.current + e.key.toLowerCase()).slice(-10);
+
+      // Secret triggers: "stem", "game", "rishi", or "joshua"
+      if (
+        keySequenceRef.current.endsWith('stem') ||
+        keySequenceRef.current.endsWith('game') ||
+        keySequenceRef.current.endsWith('rover')
+      ) {
+        setIsGameOpen(true);
+        keySequenceRef.current = '';
+      }
+    };
+
+    window.addEventListener('open-stem-game', handleCustomOpen);
+    window.addEventListener('keydown', handleKeydown);
+
+    return () => {
+      window.removeEventListener('open-stem-game', handleCustomOpen);
+      window.removeEventListener('keydown', handleKeydown);
+    };
+  }, []);
 
   return (
     <>
@@ -40,6 +75,8 @@ export default function Layout() {
       <FloatingContact />
       <CookieBanner />
       <Footer />
+      <MiniGameModal isOpen={isGameOpen} onClose={() => setIsGameOpen(false)} />
     </>
   );
 }
+

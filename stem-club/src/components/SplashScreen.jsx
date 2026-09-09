@@ -39,14 +39,14 @@ export default function SplashScreen({ onFinish }) {
   useEffect(() => {
     const ctx = gsap.context(() => {
       // 1. Initial GSAP state setup
-      gsap.set(frame1Ref.current, { display: 'flex', opacity: 0 });
-      gsap.set(card1Ref.current, { scale: 0.2, rotation: -12, opacity: 0 });
-      gsap.set([text1SchoolRef.current, badge1Ref.current], { opacity: 0, y: 12 });
+      gsap.set(frame1Ref.current, { display: 'flex', opacity: 1 });
+      gsap.set(card1Ref.current, { scale: 0.85, opacity: 1 });
+      gsap.set([text1SchoolRef.current, badge1Ref.current], { opacity: 1, y: 0 });
 
-      gsap.set(frame2Ref.current, { display: 'none', opacity: 0 });
-      gsap.set(card2Ref.current, { scale: 0.2, rotation: -15, opacity: 0 });
-      gsap.set(ring2Ref.current, { scale: 0.4, opacity: 0, rotation: 0 });
-      gsap.set([text2StemRef.current, badge2Ref.current], { opacity: 0, y: 12 });
+      gsap.set(frame2Ref.current, { display: 'none', opacity: 1 });
+      gsap.set(card2Ref.current, { scale: 0.85, opacity: 1 });
+      gsap.set(ring2Ref.current, { scale: 0.7, opacity: 0.8, rotation: 0 });
+      gsap.set([text2StemRef.current, badge2Ref.current], { opacity: 1, y: 0 });
 
       // 2. Master Sequence Timeline
       const tl = gsap.timeline({

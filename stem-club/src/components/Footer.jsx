@@ -1,19 +1,69 @@
+import React, { useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { Atom, ArrowUpRight, Phone, Mail, MapPin } from 'lucide-react';
 
 export default function Footer() {
   const year = new Date().getFullYear();
+  const [easterEggActive, setEasterEggActive] = useState(false);
+  const clickCountRef = useRef(0);
+  const clickTimerRef = useRef(null);
+
+  const handleLogoClick = (e) => {
+    clickCountRef.current += 1;
+    if (clickTimerRef.current) clearTimeout(clickTimerRef.current);
+
+    if (clickCountRef.current >= 3 || e.detail >= 3) {
+      e.preventDefault();
+      setEasterEggActive(prev => !prev);
+      clickCountRef.current = 0;
+      return;
+    }
+
+    clickTimerRef.current = setTimeout(() => {
+      clickCountRef.current = 0;
+    }, 600);
+  };
 
   return (
     <footer className="footer" role="contentinfo">
       <div className="container">
         <div className="footer-grid">
           <div className="footer-brand">
-            <Link to="/" className="nav-logo" style={{ marginBottom: '0.75rem' }} aria-label="STEM Club Home">
+            <Link
+              to="/"
+              className="nav-logo"
+              onClick={handleLogoClick}
+              style={{ marginBottom: '0.75rem', cursor: 'pointer' }}
+              aria-label="STEM Club Home"
+            >
               <span className="nav-logo-icon" style={{ width: '44px', height: '44px', background: '#ffffff', borderRadius: '50%', border: '2px solid #000000', overflow: 'hidden', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, padding: '2px' }}>
                 <img src="/assets/stem-club-logo.png" alt="STEM Club Logo" style={{ width: '90%', height: '90%', objectFit: 'contain' }} />
               </span>
-              <span>STEM CLUB</span>
+              <span
+                onClick={(e) => {
+                  if (easterEggActive) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    window.dispatchEvent(new CustomEvent('open-stem-game'));
+                  }
+                }}
+                style={{
+                  fontSize: easterEggActive ? '0.9rem' : '1.15rem',
+                  fontWeight: 900,
+                  letterSpacing: easterEggActive ? '0.02em' : '0.04em',
+                  backgroundColor: easterEggActive ? '#000000' : 'transparent',
+                  color: '#ffffff',
+                  padding: easterEggActive ? '3px 12px' : '0',
+                  borderRadius: easterEggActive ? '999px' : '0',
+                  border: easterEggActive ? '2px solid #ffffff' : 'none',
+                  transition: 'all 0.25s ease',
+                  cursor: easterEggActive ? 'pointer' : 'pointer',
+                  userSelect: 'none'
+                }}
+                title={easterEggActive ? 'Click to play secret mini-game!' : undefined}
+              >
+                {easterEggActive ? 'built by rishi and joshua' : 'STEM CLUB'}
+              </span>
             </Link>
             <p>
               An innovation organization at Greets Public School exploring science, technology, engineering and mathematics through hands-on projects, experimentation and collaboration. Membership is selective and based on faculty teacher nomination.

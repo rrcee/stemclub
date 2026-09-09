@@ -1,71 +1,12 @@
-import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import React from 'react';
+import { Link } from 'react-router-dom';
 import { useDocumentTitle } from '../hooks/useScrollReveal';
 import { 
-  Rocket, Lightbulb, Users, Wrench, Cpu, Code, Send, 
-  CheckCircle, AlertCircle, Sparkles, BrainCircuit, ShieldCheck, Award, UserCheck
+  Users, Wrench, Cpu, Sparkles, ShieldCheck, Award, UserCheck, ArrowRight, Compass
 } from 'lucide-react';
 
 const JoinUs = () => {
   useDocumentTitle('Student Selection | STEM Club', 'Learn how students are handpicked and selected by faculty teachers for the Greets Public School STEM Club.');
-  const navigate = useNavigate();
-  
-  const [formData, setFormData] = useState({
-    name: '',
-    grade: '',
-    teacherName: '',
-    interests: [],
-    skills: '',
-    whyJoin: '',
-    projectIdea: ''
-  });
-  
-  const [errors, setErrors] = useState({});
-  const [isSubmitting, setIsSubmitting] = useState(false);
-
-  const interestOptions = [
-    'Robotics', 'Web Development', 'AI / Machine Learning', 'Electronics & IoT', 
-    '3D Prototyping', 'Sensors & Automation', 'Renewable Energy', 'Embedded Systems'
-  ];
-
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
-    if (errors[name]) {
-      setErrors(prev => ({ ...prev, [name]: '' }));
-    }
-  };
-
-  const toggleInterest = (interest) => {
-    setFormData(prev => {
-      const interests = prev.interests.includes(interest)
-        ? prev.interests.filter(i => i !== interest)
-        : [...prev.interests, interest];
-      return { ...prev, interests };
-    });
-  };
-
-  const validate = () => {
-    const newErrors = {};
-    if (!formData.name.trim()) newErrors.name = 'Full name is required';
-    if (!formData.grade) newErrors.grade = 'Class/Grade is required';
-    if (!formData.teacherName.trim()) newErrors.teacherName = 'Subject teacher name is required';
-    if (!formData.whyJoin.trim()) newErrors.whyJoin = 'Please describe what sparks your keen interest in STEM';
-    if (formData.interests.length === 0) newErrors.interests = 'Select at least one area of interest';
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (validate()) {
-      setIsSubmitting(true);
-      setTimeout(() => {
-        setIsSubmitting(false);
-        navigate('/thank-you');
-      }, 800);
-    }
-  };
 
   const selectionCriteria = [
     {
@@ -140,7 +81,7 @@ const JoinUs = () => {
                 How Students Are Selected: Teacher-Nominated Cohorts
               </h3>
               <p style={{ color: '#334155', fontSize: '0.9375rem', lineHeight: 1.6, margin: 0 }}>
-                We do not enroll random members. Greets Public School teachers identify and select students who show a genuine, persistent spark for experimentation, technology, and engineering. The form below allows students with high enthusiasm to formally register their expression of interest for teacher review.
+                We do not enroll members through open application forms. Greets Public School teachers continuously observe and handpick students who show a genuine, persistent spark for experimentation, technology, and engineering during science and computing sessions.
               </p>
             </div>
           </div>
@@ -221,173 +162,54 @@ const JoinUs = () => {
             ))}
           </div>
 
-          {/* Expression of Interest Form */}
+          {/* How Students Are Selected Guide */}
           <div className="card" style={{ maxWidth: '820px', margin: '0 auto', backgroundColor: '#ffffff', color: '#000000', boxShadow: '0 20px 50px rgba(0,0,0,0.22)', borderRadius: '26px', border: '3px solid #000000' }}>
-            <div className="card-body" style={{ padding: 'clamp(1.5rem, 5vw, 2.75rem)', color: '#000000' }}>
-              <div style={{ textAlign: 'center', marginBottom: '2.25rem' }}>
-                <span className="tag" style={{ background: '#000000', color: '#ffffff', marginBottom: '0.75rem', borderRadius: '999px' }}>
-                  FACULTY REVIEW FORM
-                </span>
-                <h2 style={{ color: '#000000', fontFamily: 'var(--font-heading)', fontSize: '2.25rem', margin: '0.5rem 0 0.5rem', fontWeight: 900 }}>
-                  Expression of Interest
-                </h2>
-                <p style={{ color: '#334155', fontSize: '0.9375rem', maxWidth: '600px', margin: '0 auto' }}>
-                  Fill out this profile to bring your keen STEM interest to the attention of your teachers and the STEM Club advisory panel.
-                </p>
+            <div className="card-body" style={{ padding: 'clamp(2rem, 5vw, 3rem)', color: '#000000', textAlign: 'center' }}>
+              <div style={{
+                width: '56px',
+                height: '56px',
+                borderRadius: '50%',
+                background: '#000000',
+                color: '#ffffff',
+                display: 'inline-flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                marginBottom: '1.25rem'
+              }}>
+                <Sparkles size={28} />
               </div>
-              
-              <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 300px), 1fr))', gap: '1.5rem' }}>
-                  <div className="form-group">
-                    <label className="form-label" htmlFor="name" style={{ color: '#000000' }}>Student Full Name *</label>
-                    <input 
-                      type="text" 
-                      id="name" 
-                      name="name" 
-                      className={`form-input ${errors.name ? 'form-error' : ''}`}
-                      value={formData.name}
-                      onChange={handleInputChange}
-                      placeholder="e.g. Rahul Nair"
-                    />
-                    {errors.name && <span style={{ color: '#dc2626', fontSize: '0.8125rem', marginTop: '0.4rem', display: 'flex', alignItems: 'center', gap: '0.25rem', fontWeight: 600 }}><AlertCircle size={14} /> {errors.name}</span>}
-                  </div>
-                  
-                  <div className="form-group">
-                    <label className="form-label" htmlFor="grade" style={{ color: '#000000' }}>Class / Grade *</label>
-                    <select 
-                      id="grade" 
-                      name="grade" 
-                      className={`form-select ${errors.grade ? 'form-error' : ''}`}
-                      value={formData.grade}
-                      onChange={handleInputChange}
-                    >
-                      <option value="">Select current grade</option>
-                      <option value="6">Class 6</option>
-                      <option value="7">Class 7</option>
-                      <option value="8">Class 8</option>
-                      <option value="9">Class 9</option>
-                      <option value="10">Class 10</option>
-                      <option value="11">Class 11</option>
-                      <option value="12">Class 12</option>
-                    </select>
-                    {errors.grade && <span style={{ color: '#dc2626', fontSize: '0.8125rem', marginTop: '0.4rem', display: 'flex', alignItems: 'center', gap: '0.25rem', fontWeight: 600 }}><AlertCircle size={14} /> {errors.grade}</span>}
-                  </div>
-                </div>
-
-                <div className="form-group">
-                  <label className="form-label" htmlFor="teacherName" style={{ color: '#000000' }}>
-                    Current Science / Math / CS Teacher *
-                  </label>
-                  <input 
-                    type="text" 
-                    id="teacherName" 
-                    name="teacherName" 
-                    className={`form-input ${errors.teacherName ? 'form-error' : ''}`}
-                    value={formData.teacherName}
-                    onChange={handleInputChange}
-                    placeholder="e.g. Mrs. Lakshmi (Physics) / Mr. Thomas (Computer Science)"
-                  />
-                  <p className="form-helper" style={{ color: '#475569', fontSize: '0.8125rem', marginTop: '0.35rem' }}>
-                    Your subject teacher will be consulted regarding your classroom curiosity and lab participation.
-                  </p>
-                  {errors.teacherName && <span style={{ color: '#dc2626', fontSize: '0.8125rem', marginTop: '0.4rem', display: 'flex', alignItems: 'center', gap: '0.25rem', fontWeight: 600 }}><AlertCircle size={14} /> {errors.teacherName}</span>}
-                </div>
-
-                <div className="form-group">
-                  <label className="form-label" style={{ color: '#000000' }}>Areas of Keen Interest *</label>
-                  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem' }}>
-                    {interestOptions.map(interest => {
-                      const isSelected = formData.interests.includes(interest);
-                      return (
-                        <button
-                          key={interest}
-                          type="button"
-                          onClick={() => toggleInterest(interest)}
-                          style={{
-                            padding: '0.5rem 1.15rem',
-                            borderRadius: '999px',
-                            border: `2px solid ${isSelected ? '#000000' : '#cbd5e1'}`,
-                            backgroundColor: isSelected ? '#000000' : '#ffffff',
-                            color: isSelected ? '#ffffff' : '#000000',
-                            fontWeight: isSelected ? '800' : '600',
-                            fontSize: '0.875rem',
-                            cursor: 'pointer',
-                            transition: 'all 0.15s ease'
-                          }}
-                        >
-                          {interest}
-                        </button>
-                      );
-                    })}
-                  </div>
-                  {errors.interests && <span style={{ color: '#dc2626', fontSize: '0.8125rem', marginTop: '0.4rem', display: 'flex', alignItems: 'center', gap: '0.25rem', fontWeight: 600 }}><AlertCircle size={14} /> {errors.interests}</span>}
-                </div>
-
-                <div className="form-group">
-                  <label className="form-label" htmlFor="skills" style={{ color: '#000000' }}>Personal Projects or Hobby Experiments (Optional)</label>
-                  <input 
-                    type="text" 
-                    id="skills" 
-                    name="skills" 
-                    className="form-input"
-                    value={formData.skills}
-                    onChange={handleInputChange}
-                    placeholder="e.g. Built an Arduino LED chaser, solved Python puzzles, made science exhibition model"
-                  />
-                </div>
-
-                <div className="form-group">
-                  <label className="form-label" htmlFor="whyJoin" style={{ color: '#000000' }}>Why are you keenly interested in STEM? *</label>
-                  <textarea 
-                    id="whyJoin" 
-                    name="whyJoin" 
-                    className={`form-textarea ${errors.whyJoin ? 'form-error' : ''}`}
-                    rows={4}
-                    value={formData.whyJoin}
-                    onChange={handleInputChange}
-                    placeholder="Explain what topics or real-world challenges fascinate you, and why you want to build solutions in the STEM Lab..."
-                  />
-                  {errors.whyJoin && <span style={{ color: '#dc2626', fontSize: '0.8125rem', marginTop: '0.4rem', display: 'flex', alignItems: 'center', gap: '0.25rem', fontWeight: 600 }}><AlertCircle size={14} /> {errors.whyJoin}</span>}
-                </div>
-
-                <div className="form-group">
-                  <label className="form-label" htmlFor="projectIdea" style={{ color: '#000000' }}>What is a project idea you would love to build? (Optional)</label>
-                  <textarea 
-                    id="projectIdea" 
-                    name="projectIdea" 
-                    className="form-textarea"
-                    rows={3}
-                    value={formData.projectIdea}
-                    onChange={handleInputChange}
-                    placeholder="Describe a mechanism, robot, app, or experiment you dream of constructing..."
-                  />
-                </div>
-
-                <div style={{
-                  backgroundColor: '#f8fafc',
-                  border: '2px solid #000000',
-                  borderRadius: '16px',
-                  padding: '1.25rem',
-                  fontSize: '0.875rem',
-                  color: '#334155',
-                  lineHeight: 1.6
-                }}>
-                  <strong style={{ color: '#000000' }}>Faculty Review Note:</strong> Submission of this form registers your candidacy. Final selection is decided by teacher recommendation and lab space availability.
-                </div>
-
-                <button 
-                  type="submit" 
-                  className="btn btn-primary"
-                  style={{ width: '100%', marginTop: '0.75rem', display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '0.5rem', fontSize: '1rem', padding: '1rem 2rem', borderRadius: '999px' }}
-                  disabled={isSubmitting}
-                >
-                  {isSubmitting ? 'Registering Interest...' : (
-                    <>
-                      Submit for Faculty Teacher Review <Send size={18} strokeWidth={2} />
-                    </>
-                  )}
-                </button>
-              </form>
+              <h2 style={{ color: '#000000', fontFamily: 'var(--font-heading)', fontSize: '2rem', margin: '0 0 1rem', fontWeight: 900 }}>
+                How to Join a STEM Cohort
+              </h2>
+              <p style={{ color: '#334155', fontSize: '1rem', lineHeight: 1.7, maxWidth: '640px', margin: '0 auto 1.75rem' }}>
+                There is no sign-up or registration form required. Students are nominated directly by their Science, Mathematics, and Computer Science teachers based on active classroom participation, inquisitive questions, and enthusiasm for hands-on problem solving.
+              </p>
+              <div style={{
+                backgroundColor: '#f8fafc',
+                border: '2px solid #000000',
+                borderRadius: '16px',
+                padding: '1.5rem',
+                textAlign: 'left',
+                marginBottom: '2rem'
+              }}>
+                <h4 style={{ fontFamily: 'var(--font-heading)', fontWeight: 800, color: '#000000', marginBottom: '0.75rem', fontSize: '1.05rem' }}>
+                  Tips for Aspiring Members:
+                </h4>
+                <ul style={{ color: '#334155', fontSize: '0.9375rem', lineHeight: 1.7, paddingLeft: '1.25rem', margin: 0 }}>
+                  <li>Engage passionately during physics, chemistry, biology, and math lab periods.</li>
+                  <li>Work on small independent coding or electronics experiments at home or school.</li>
+                  <li>Talk to your science and CS faculty about concepts or prototypes you want to build.</li>
+                  <li>Participate in school science expos and exhibitions to showcase your curiosity.</li>
+                </ul>
+              </div>
+              <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
+                <Link to="/projects" className="btn btn-primary" style={{ padding: '0.85rem 2rem', fontSize: '0.875rem', display: 'inline-flex', alignItems: 'center', gap: '0.5rem' }}>
+                  Explore Student Projects <ArrowRight size={16} />
+                </Link>
+                <Link to="/stem-lab" className="btn btn-secondary" style={{ padding: '0.85rem 2rem', fontSize: '0.875rem', display: 'inline-flex', alignItems: 'center', gap: '0.5rem' }}>
+                  Tour Laboratory Facilities <Compass size={16} />
+                </Link>
+              </div>
             </div>
           </div>
         </div>

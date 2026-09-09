@@ -32,39 +32,6 @@ export const projects = [
     color: '#10b981'
   },
   {
-    id: 'ai-attendance-system',
-    title: 'AI Attendance System',
-    category: 'Artificial Intelligence',
-    status: 'Completed',
-    summary: 'A computer-vision-based attendance system designed to automate attendance tracking.',
-    description: 'An automated attendance management system that uses computer vision and facial recognition to identify students and record attendance. The system captures real-time video feed, detects faces, matches them against a pre-registered database, and logs attendance with timestamps.',
-    problem: 'Manual attendance tracking is time-consuming, prone to errors, and susceptible to proxy attendance. In large classrooms, roll calls consume valuable instructional time and paper-based records are difficult to analyze for patterns such as chronic absenteeism.',
-    solution: 'The AI Attendance System uses a camera to capture live video, applies face detection algorithms to locate faces in each frame, and then uses a face recognition model trained on registered student photographs to identify individuals. Recognized students are automatically marked present with a timestamp in a digital log.',
-    technologies: ['Python', 'OpenCV', 'Face Recognition', 'Computer Vision', 'Camera Systems', 'SQLite'],
-    howItWorks: [
-      'Student photographs are collected and encoded into facial embeddings during registration',
-      'A camera captures the live video feed of the classroom',
-      'OpenCV detects faces in each frame using Haar cascades or DNN-based detection',
-      'Detected faces are compared against stored embeddings using the face_recognition library',
-      'Matched identities are logged with timestamps into an SQLite database',
-      'A simple interface displays attendance records and allows export'
-    ],
-    results: [
-      'Achieved reliable face recognition under controlled lighting conditions',
-      'Reduced attendance recording time significantly compared to manual roll call',
-      'Built a working prototype with registration, detection, and logging',
-      'Generated exportable attendance reports from the database'
-    ],
-    futureImprovements: [
-      'Improve accuracy under varying lighting and angle conditions',
-      'Add multi-camera support for larger spaces',
-      'Implement anti-spoofing measures to prevent photo-based bypass',
-      'Build a parent notification system for absence alerts'
-    ],
-    image: null,
-    color: '#8b5cf6'
-  },
-  {
     id: 'weather-monitoring-station',
     title: 'Weather Monitoring Station',
     category: 'IoT',

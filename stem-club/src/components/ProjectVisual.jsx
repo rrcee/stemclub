@@ -59,62 +59,6 @@ export default function ProjectVisual({ projectId, title, category, color = '#25
           </svg>
         );
 
-      case 'ai-attendance-system':
-        return (
-          <svg viewBox="0 0 600 360" width="100%" height="100%" style={{ display: 'block', background: '#000000' }}>
-            <defs>
-              <pattern id="scan-grid" width="24" height="24" patternUnits="userSpaceOnUse">
-                <line x1="0" y1="0" x2="24" y2="0" stroke="rgba(255,255,255,0.1)" strokeWidth="1" />
-                <line x1="0" y1="0" x2="0" y2="24" stroke="rgba(255,255,255,0.1)" strokeWidth="1" />
-              </pattern>
-            </defs>
-
-            <rect width="600" height="360" fill="url(#scan-grid)" />
-
-            {/* Viewfinder Target Frame */}
-            <g stroke="#ffffff" strokeWidth="2" fill="none">
-              <path d="M 70 70 L 110 70 M 70 70 L 70 110" />
-              <path d="M 530 70 L 490 70 M 530 70 L 530 110" />
-              <path d="M 70 290 L 110 290 M 70 290 L 70 250" />
-              <path d="M 530 290 L 490 290 M 530 290 L 530 250" />
-            </g>
-
-            {/* Face Contour */}
-            <g transform="translate(300, 175)" stroke="#ffffff" strokeWidth="1.5" fill="none">
-              <ellipse cx="0" cy="0" rx="75" ry="95" strokeDasharray="4 2" />
-              <circle cx="-28" cy="-20" r="10" stroke="#ffffff" strokeWidth="2" />
-              <circle cx="-28" cy="-20" r="3" fill="#ffffff" />
-              <circle cx="28" cy="-20" r="10" stroke="#ffffff" strokeWidth="2" />
-              <circle cx="28" cy="-20" r="3" fill="#ffffff" />
-
-              <path d="M 0 -20 L -3 10 L 0 16 L 3 10 Z" fill="#2596be" />
-              <path d="M -24 45 Q 0 38 24 45 Q 0 56 -24 45 Z" fill="#2596be" stroke="#ffffff" />
-
-              <line x1="-28" y1="-20" x2="0" y2="16" stroke="rgba(255,255,255,0.4)" />
-              <line x1="28" y1="-20" x2="0" y2="16" stroke="rgba(255,255,255,0.4)" />
-              <line x1="0" y1="16" x2="-24" y2="45" stroke="rgba(255,255,255,0.4)" />
-              <line x1="0" y1="16" x2="24" y2="45" stroke="rgba(255,255,255,0.4)" />
-
-              <rect x="-95" y="-115" width="190" height="230" rx="6" stroke="#2596be" strokeWidth="2" strokeDasharray="6 3" />
-            </g>
-
-            {/* Viewfinder Overlay HUD */}
-            <g transform="translate(90, 90)">
-              <rect x="0" y="0" width="140" height="85" rx="6" fill="#000000" stroke="#ffffff" strokeWidth="2" />
-              <text x="12" y="20" fill="#ffffff" fontSize="9" fontFamily="monospace" fontWeight="bold">AI COMPUTER VISION</text>
-              <text x="12" y="38" fill="#ffffff" fontSize="8" fontFamily="monospace">ACCURACY: 98.6%</text>
-              <text x="12" y="54" fill="#2596be" fontSize="9" fontFamily="monospace" fontWeight="bold">STATUS: VERIFIED</text>
-              <text x="12" y="70" fill="#ffffff" fontSize="8" fontFamily="monospace">FPS: 30 | 1080p</text>
-            </g>
-
-            <g transform="translate(370, 240)">
-              <rect x="0" y="0" width="160" height="50" rx="6" fill="#ffffff" stroke="#000000" strokeWidth="2" />
-              <text x="12" y="20" fill="#000000" fontSize="8" fontFamily="monospace">ATTENDANCE LOGGED</text>
-              <text x="12" y="38" fill="#2596be" fontSize="11" fontFamily="monospace" fontWeight="bold">STUDENT VERIFIED</text>
-            </g>
-          </svg>
-        );
-
       case 'weather-monitoring-station':
         return (
           <svg viewBox="0 0 600 360" width="100%" height="100%" style={{ display: 'block', background: '#000000' }}>

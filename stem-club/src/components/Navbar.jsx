@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 
@@ -15,7 +15,26 @@ const navItems = [
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [easterEggActive, setEasterEggActive] = useState(false);
+  const clickCountRef = useRef(0);
+  const clickTimerRef = useRef(null);
   const location = useLocation();
+
+  const handleLogoClick = (e) => {
+    clickCountRef.current += 1;
+    if (clickTimerRef.current) clearTimeout(clickTimerRef.current);
+
+    if (clickCountRef.current >= 3 || e.detail >= 3) {
+      e.preventDefault();
+      setEasterEggActive(prev => !prev);
+      clickCountRef.current = 0;
+      return;
+    }
+
+    clickTimerRef.current = setTimeout(() => {
+      clickCountRef.current = 0;
+    }, 600);
+  };
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
@@ -47,7 +66,13 @@ export default function Navbar() {
     <>
       <nav className={`nav ${scrolled ? 'scrolled' : ''}`} role="navigation" aria-label="Main navigation">
         <div className="nav-inner">
-          <Link to="/" className="nav-logo" aria-label="STEM Club Home" style={{ display: 'flex', alignItems: 'center', gap: '0.85rem' }}>
+          <Link
+            to="/"
+            className="nav-logo"
+            onClick={handleLogoClick}
+            aria-label="STEM Club Home"
+            style={{ display: 'flex', alignItems: 'center', gap: '0.85rem', cursor: 'pointer' }}
+          >
             <span className="nav-logo-icon" style={{
               width: '54px',
               height: '54px',
@@ -66,7 +91,32 @@ export default function Navbar() {
                 <img src="/assets/stem-club-logo.png" alt="STEM Club Logo" style={{ width: '92%', height: '92%', objectFit: 'contain' }} />
               </div>
             </span>
-            <span style={{ fontSize: '1.25rem', fontWeight: 900, letterSpacing: '0.04em' }}>STEM CLUB</span>
+            <span
+              onClick={(e) => {
+                if (easterEggActive) {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  window.dispatchEvent(new CustomEvent('open-stem-game'));
+                }
+              }}
+              style={{
+                fontSize: easterEggActive ? '1rem' : '1.25rem',
+                fontWeight: 900,
+                letterSpacing: easterEggActive ? '0.02em' : '0.04em',
+                backgroundColor: easterEggActive ? '#000000' : 'transparent',
+                color: '#ffffff',
+                padding: easterEggActive ? '4px 14px' : '0',
+                borderRadius: easterEggActive ? '999px' : '0',
+                border: easterEggActive ? '2px solid #ffffff' : 'none',
+                boxShadow: easterEggActive ? '0 4px 14px rgba(0,0,0,0.3)' : 'none',
+                transition: 'all 0.25s ease',
+                cursor: easterEggActive ? 'pointer' : 'pointer',
+                userSelect: 'none'
+              }}
+              title={easterEggActive ? 'Click to play secret mini-game!' : undefined}
+            >
+              {easterEggActive ? 'built by rishi and joshua' : 'STEM CLUB'}
+            </span>
           </Link>
 
           <ul className="nav-links" role="menubar">
@@ -109,13 +159,40 @@ export default function Navbar() {
         aria-label="Mobile navigation"
       >
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.5rem', paddingBottom: '1rem', borderBottom: '2px solid rgba(255, 255, 255, 0.25)' }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.85rem' }}>
+          <div
+            style={{ display: 'flex', alignItems: 'center', gap: '0.85rem', cursor: 'pointer' }}
+            onClick={handleLogoClick}
+          >
             <span style={{ width: '50px', height: '50px', background: '#ffffff', borderRadius: '50%', border: '2.5px solid #000000', padding: '2px', overflow: 'hidden', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
               <div style={{ width: '100%', height: '100%', borderRadius: '50%', overflow: 'hidden', background: '#ffffff', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                 <img src="/assets/stem-club-logo.png" alt="STEM Club Logo" style={{ width: '92%', height: '92%', objectFit: 'contain' }} />
               </div>
             </span>
-            <span style={{ fontFamily: 'var(--font-heading)', fontWeight: 900, color: '#ffffff', fontSize: '1.25rem', letterSpacing: '0.04em' }}>STEM CLUB</span>
+            <span
+              onClick={(e) => {
+                if (easterEggActive) {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  setMobileOpen(false);
+                  window.dispatchEvent(new CustomEvent('open-stem-game'));
+                }
+              }}
+              style={{
+                fontFamily: 'var(--font-heading)',
+                fontWeight: 900,
+                color: '#ffffff',
+                fontSize: easterEggActive ? '0.9rem' : '1.25rem',
+                letterSpacing: easterEggActive ? '0.02em' : '0.04em',
+                backgroundColor: easterEggActive ? '#000000' : 'transparent',
+                padding: easterEggActive ? '4px 12px' : '0',
+                borderRadius: easterEggActive ? '999px' : '0',
+                border: easterEggActive ? '2px solid #ffffff' : 'none',
+                transition: 'all 0.25s ease'
+              }}
+              title={easterEggActive ? 'Tap to play secret mini-game!' : undefined}
+            >
+              {easterEggActive ? 'built by rishi and joshua' : 'STEM CLUB'}
+            </span>
           </div>
           <button
             onClick={() => setMobileOpen(false)}

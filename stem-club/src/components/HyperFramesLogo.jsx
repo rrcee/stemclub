@@ -142,6 +142,16 @@ export default function HyperFramesLogo({ autoPlay = true, interval = 3500, clas
         </div>
       </div>
 
+      {/* Frame Insignia Label Text */}
+      <div style={{ textAlign: 'center', marginTop: '12px', minHeight: '44px' }}>
+        <div style={{ fontFamily: 'var(--font-heading)', fontWeight: 800, fontSize: '1.05rem', color: '#ffffff', letterSpacing: '0.04em' }}>
+          {activeFrame === 1 ? 'GREETS PUBLIC SCHOOL' : 'GPS STEM CLUB'}
+        </div>
+        <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.75rem', color: 'rgba(255, 255, 255, 0.88)', letterSpacing: '0.05em' }}>
+          {activeFrame === 1 ? 'Bethel Foundation • CBSE Affiliated' : 'Official Innovation Community Mascot'}
+        </div>
+      </div>
+
       {/* Frame Switcher Indicator Dots */}
       <div style={{ display: 'flex', alignItems: 'center', gap: '6px', marginTop: '0.85rem' }}>
         <span

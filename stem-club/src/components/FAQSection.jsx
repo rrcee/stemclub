@@ -16,7 +16,7 @@ const faqs = [
   },
   {
     question: "How are student projects selected and developed?",
-    answer: "Students propose real-world problem statements or collaborate on club flagship initiatives (such as automated irrigation, computer vision attendance, and environmental stations). Faculty mentors review proposals and guide student teams through the prototyping, testing, and documentation phases."
+    answer: "Students propose real-world problem statements or collaborate on club flagship initiatives (such as automated irrigation, autonomous robotics, and environmental stations). Faculty mentors review proposals and guide student teams through the prototyping, testing, and documentation phases."
   },
   {
     question: "Do club members represent the school in external STEM competitions?",

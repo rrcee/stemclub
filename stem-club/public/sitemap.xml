@@ -21,11 +21,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://stem.gps.ac.in/projects/ai-attendance-system</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://stem.gps.ac.in/projects/weather-monitoring-station</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
