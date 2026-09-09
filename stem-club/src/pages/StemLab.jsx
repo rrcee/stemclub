@@ -4,7 +4,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useDocumentTitle } from '../hooks/useScrollReveal';
 import { labEquipment, labTechnologies } from '../data/stemData';
 import { 
-  Wrench, Cpu, Code, Beaker, 
+  Wrench, Cpu, Code, 
   ChevronDown, ChevronUp, Monitor
 } from 'lucide-react';
 
@@ -29,8 +29,7 @@ const StemLab = () => {
     { id: 1, title: 'Electronics', icon: <Cpu size={28} strokeWidth={2} color="#ffffff" />, desc: 'Circuit design, soldering stations, multimeters, and embedded sensor systems.' },
     { id: 2, title: 'Robotics', icon: <Wrench size={28} strokeWidth={2} color="#ffffff" />, desc: 'Autonomous chassis, motor drivers, servo steering, and navigation test tracks.' },
     { id: 3, title: 'Programming', icon: <Code size={28} strokeWidth={2} color="#ffffff" />, desc: 'Python, C++ firmware for Arduino/ESP32, AI models, and data telemetry.' },
-    { id: 4, title: 'Prototyping', icon: <Monitor size={28} strokeWidth={2} color="#ffffff" />, desc: 'Computer aided design, 3D printing, laser cut chassis, and rapid casing.' },
-    { id: 5, title: 'Experimentation', icon: <Beaker size={28} strokeWidth={2} color="#ffffff" />, desc: 'Sensor physics, renewable energy test rigs, and environmental measurement.' }
+    { id: 4, title: 'Prototyping', icon: <Monitor size={28} strokeWidth={2} color="#ffffff" />, desc: 'Computer aided design, 3D printing, laser cut chassis, and rapid casing.' }
   ];
 
   useEffect(() => {
@@ -110,11 +109,9 @@ const StemLab = () => {
       {/* Workspaces */}
       <section className="section" style={{ padding: '2rem 0 4rem' }}>
         <div className="container">
-          <h2 className="section-title" style={{ fontSize: '2rem', marginBottom: '2.5rem', textAlign: 'center', color: '#ffffff' }}>
-            Workstation Bays
-          </h2>
           <div
             ref={workspacesGridRef}
+            className="mobile-carousel"
             style={{
               display: 'grid',
               gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',

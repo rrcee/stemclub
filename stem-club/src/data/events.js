@@ -49,10 +49,21 @@ export const events = [
     category: 'Competition',
     description: 'A collaborative event bringing together STEM enthusiasts from multiple schools to present projects, participate in challenges, and exchange ideas.',
     location: 'To be announced',
-    date: null,
+    date: 'Date to be announced for science',
     time: null,
     registrationOpen: false,
     color: '#ef4444'
+  },
+  {
+    id: 'stem-innovators-hackathon-upcoming',
+    title: 'STEM Innovators Hackathon',
+    category: 'Hackathon',
+    description: 'A fast-paced invention challenge where student cohorts team up to design, wire, and pitch working hardware and software prototypes addressing real-world community problems.',
+    location: 'STEM Lab & Computer Lab',
+    date: null,
+    time: null,
+    registrationOpen: true,
+    color: '#3b82f6'
   }
 ];
 

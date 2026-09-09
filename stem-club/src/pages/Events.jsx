@@ -53,6 +53,7 @@ export default function Events() {
         {events && events.length > 0 ? (
           <div
             ref={gridRef}
+            className="mobile-carousel"
             style={{ 
               display: 'grid', 
               gridTemplateColumns: 'repeat(auto-fill, minmax(min(100%, 340px), 1fr))', 
@@ -60,7 +61,7 @@ export default function Events() {
             }}
           >
             {events.map((event) => (
-              <div key={event.id} className="event-card-item gsap-card card" style={{ background: '#ffffff', color: '#000000', border: '2px solid #000000', borderRadius: '12px', display: 'flex', flexDirection: 'column' }}>
+              <div key={event.id} className="event-card-item gsap-card card" style={{ background: '#ffffff', color: '#000000', border: '2px solid #000000', borderRadius: '22px', display: 'flex', flexDirection: 'column' }}>
                 <div className="card-body" style={{ display: 'flex', flexDirection: 'column', height: '100%', padding: '1.75rem' }}>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '1rem', gap: '0.75rem' }}>
                     <h3 style={{ fontFamily: 'var(--font-heading)', fontSize: '1.25rem', fontWeight: 800, color: '#000000', margin: 0 }}>

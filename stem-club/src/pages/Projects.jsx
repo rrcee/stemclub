@@ -95,6 +95,7 @@ export default function Projects() {
         {/* Projects Grid */}
         <div
           ref={gridRef}
+          className="mobile-carousel"
           style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(min(100%, 360px), 1fr))', gap: '2rem' }}
         >
           {filteredProjects.map((project) => (

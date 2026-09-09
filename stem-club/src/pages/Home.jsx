@@ -321,9 +321,9 @@ function HeroSection() {
           <p
             ref={descRef}
             className="hero-description"
-            style={{ color: '#ffffff', fontSize: '1.1875rem', lineHeight: 1.7, marginTop: '1.75rem', maxWidth: '620px' }}
+            style={{ color: '#ffffff', fontSize: '1.1875rem', lineHeight: 1.7, marginTop: '1.75rem', maxWidth: '640px' }}
           >
-            An innovation ecosystem where students build with science, technology, engineering, and mathematics. Membership is selective and teacher-nominated for students with keen curiosity.
+            STEM stands for Science, Technology, Engineering, and Maths. An innovation ecosystem at Greets Public School where students build, experiment, and lead with curious minds.
           </p>
 
           <div ref={buttonsRef} style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem', marginTop: '2rem' }}>
@@ -380,106 +380,6 @@ function MarqueeTicker() {
   );
 }
 
-function StatsSection() {
-  const sectionRef = useRef(null);
-  const count1Ref = useRef(null);
-  const count2Ref = useRef(null);
-  const count3Ref = useRef(null);
-  const count4Ref = useRef(null);
-
-  useEffect(() => {
-    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (prefersReduced) return;
-
-    const ctx = gsap.context(() => {
-      const animateCount = (ref, target) => {
-        const obj = { val: 0 };
-        gsap.to(obj, {
-          val: target,
-          duration: 1.6,
-          ease: 'power2.out',
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: 'top 80%',
-            toggleActions: 'play none none none'
-          },
-          onUpdate: () => {
-            if (ref.current) {
-              ref.current.textContent = Math.floor(obj.val);
-            }
-          }
-        });
-      };
-
-      animateCount(count1Ref, 6);
-      animateCount(count2Ref, 12);
-      animateCount(count3Ref, 100);
-      animateCount(count4Ref, 5);
-
-      gsap.from('.stat-card', {
-        y: 40,
-        opacity: 0,
-        duration: 0.7,
-        stagger: 0.12,
-        ease: 'power3.out',
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: 'top 85%'
-        }
-      });
-    }, sectionRef);
-
-    return () => ctx.revert();
-  }, []);
-
-  return (
-    <section ref={sectionRef} style={{ padding: '3.5rem 0', backgroundColor: '#1e7b9b', borderBottom: '2px solid #000000' }}>
-      <div className="container">
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
-          gap: '1.25rem'
-        }}>
-          <div className="stat-card card" style={{ background: '#ffffff', color: '#000000', padding: '1.75rem', borderRadius: '22px', border: '2px solid #000000', boxShadow: '0 6px 18px rgba(0,0,0,0.18)', textAlign: 'center' }}>
-            <div style={{ fontFamily: 'var(--font-heading)', fontSize: '2.75rem', fontWeight: 900, color: '#000000', lineHeight: 1 }}>
-              <span ref={count1Ref}>6</span>
-            </div>
-            <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.8125rem', fontWeight: 800, color: '#000000', textTransform: 'uppercase', marginTop: '0.6rem', letterSpacing: '0.05em' }}>
-              Core STEM Tracks
-            </div>
-          </div>
-
-          <div className="stat-card card" style={{ background: '#ffffff', color: '#000000', padding: '1.75rem', borderRadius: '22px', border: '2px solid #000000', boxShadow: '0 6px 18px rgba(0,0,0,0.18)', textAlign: 'center' }}>
-            <div style={{ fontFamily: 'var(--font-heading)', fontSize: '2.75rem', fontWeight: 900, color: '#000000', lineHeight: 1 }}>
-              <span ref={count2Ref}>12</span>+
-            </div>
-            <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.8125rem', fontWeight: 800, color: '#000000', textTransform: 'uppercase', marginTop: '0.6rem', letterSpacing: '0.05em' }}>
-              Student Prototypes
-            </div>
-          </div>
-
-          <div className="stat-card card" style={{ background: '#ffffff', color: '#000000', padding: '1.75rem', borderRadius: '22px', border: '2px solid #000000', boxShadow: '0 6px 18px rgba(0,0,0,0.18)', textAlign: 'center' }}>
-            <div style={{ fontFamily: 'var(--font-heading)', fontSize: '2.75rem', fontWeight: 900, color: '#000000', lineHeight: 1 }}>
-              <span ref={count3Ref}>100</span>%
-            </div>
-            <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.8125rem', fontWeight: 800, color: '#000000', textTransform: 'uppercase', marginTop: '0.6rem', letterSpacing: '0.05em' }}>
-              Teacher Selected
-            </div>
-          </div>
-
-          <div className="stat-card card" style={{ background: '#ffffff', color: '#000000', padding: '1.75rem', borderRadius: '22px', border: '2px solid #000000', boxShadow: '0 6px 18px rgba(0,0,0,0.18)', textAlign: 'center' }}>
-            <div style={{ fontFamily: 'var(--font-heading)', fontSize: '2.75rem', fontWeight: 900, color: '#000000', lineHeight: 1 }}>
-              <span ref={count4Ref}>5</span>
-            </div>
-            <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.8125rem', fontWeight: 800, color: '#000000', textTransform: 'uppercase', marginTop: '0.6rem', letterSpacing: '0.05em' }}>
-              Workstation Bays
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
 
 function WhatWeDoSection() {
   const sectionRef = useRef(null);
@@ -547,6 +447,7 @@ function WhatWeDoSection() {
 
         <div
           ref={gridRef}
+          className="mobile-carousel"
           style={{
             display: 'grid',
             gridTemplateColumns: 'repeat(auto-fill, minmax(min(100%, 340px), 1fr))',
@@ -645,6 +546,7 @@ function FeaturedProjectsSection() {
 
         <div
           ref={gridRef}
+          className="mobile-carousel"
           style={{
             display: 'grid',
             gridTemplateColumns: 'repeat(auto-fill, minmax(min(100%, 320px), 1fr))',
@@ -807,6 +709,7 @@ function CTASection() {
 
           {/* 3-Step Pathways */}
           <div
+            className="mobile-carousel"
             style={{
               display: 'grid',
               gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
@@ -878,7 +781,6 @@ export default function Home() {
     <>
       <HeroSection />
       <MarqueeTicker />
-      <StatsSection />
       <WhatWeDoSection />
       <FeaturedProjectsSection />
       <FAQSection />

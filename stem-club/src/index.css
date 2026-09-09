@@ -1107,3 +1107,53 @@ h1, h2, h3, h4, h5, h6 {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   user-select: none;
 }
+
+/* ================================
+   MOBILE CAROUSEL (Horizontal Swipeable Snapping)
+   ================================ */
+
+@media (max-width: 768px) {
+  /* Trigger carousel only when there are 2 or more child cards */
+  .mobile-carousel {
+    display: flex !important;
+    flex-direction: row !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    scroll-snap-type: x mandatory !important;
+    -webkit-overflow-scrolling: touch !important;
+    scroll-padding-left: 1.25rem !important;
+    scroll-padding-right: 1.25rem !important;
+    gap: 1.25rem !important;
+    padding-top: 0.5rem !important;
+    padding-bottom: 1.5rem !important;
+    padding-left: 1.25rem !important;
+    padding-right: 1.25rem !important;
+    margin-left: -1.25rem !important;
+    margin-right: -1.25rem !important;
+    scrollbar-width: none !important;
+    -ms-overflow-style: none !important;
+    overscroll-behavior-x: contain !important;
+  }
+
+  .mobile-carousel::-webkit-scrollbar {
+    display: none !important;
+  }
+
+  /* Each card in the carousel takes 85% viewport width to hint next card */
+  .mobile-carousel > * {
+    flex: 0 0 85% !important;
+    min-width: 270px !important;
+    max-width: 325px !important;
+    scroll-snap-align: center !important;
+    scroll-snap-stop: always !important;
+  }
+
+  /* If only 1 card exists, disable carousel behavior and span full width */
+  .mobile-carousel > :only-child {
+    flex: 1 1 100% !important;
+    min-width: 0 !important;
+    max-width: 100% !important;
+    scroll-snap-align: none !important;
+  }
+}
+

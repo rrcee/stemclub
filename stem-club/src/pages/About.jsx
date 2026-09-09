@@ -4,6 +4,7 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useDocumentTitle } from '../hooks/useScrollReveal';
 import { Target, Lightbulb, Users, FlaskConical, Binary, Wrench, Sigma, Handshake, Brain, Heart, Medal, ArrowRight, Sparkles } from 'lucide-react';
+import HyperFramesLogo from '../components/HyperFramesLogo';
 
 if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger);
@@ -87,27 +88,7 @@ const About = () => {
       }}
     >
       <header ref={headerRef} className="page-header" style={{ textAlign: 'center', marginBottom: '40px' }}>
-        <div style={{
-          display: 'inline-flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          width: '150px',
-          height: '150px',
-          borderRadius: '32px',
-          background: '#ffffff',
-          padding: '6px',
-          border: '3px solid #000000',
-          marginBottom: '1.75rem',
-          boxShadow: '0 16px 40px rgba(0,0,0,0.28)'
-        }}>
-          <div style={{ width: '100%', height: '100%', borderRadius: '26px', overflow: 'hidden', background: '#ffffff', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-            <img
-              src="/assets/stem-club-logo.png"
-              alt="Official STEM Club Logo"
-              style={{ width: '92%', height: '92%', objectFit: 'contain' }}
-            />
-          </div>
-        </div>
+        <HyperFramesLogo className="mb-6" />
         <br />
         <span className="section-label" style={{ color: '#ffffff' }}>Club Identity</span>
         <h1 className="section-title" style={{ fontSize: 'clamp(2.5rem, 5vw, 3.5rem)', color: '#ffffff', marginBottom: '16px' }}>
@@ -119,15 +100,15 @@ const About = () => {
       </header>
 
       <div
-        className="about-cards-grid"
-        style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '30px', marginBottom: '60px' }}
+        className="about-cards-grid mobile-carousel"
+        style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '30px', marginBottom: '32px' }}
       >
         <section className="about-stagger-card gsap-card card" style={{ backgroundColor: '#ffffff', color: '#000000', padding: '30px', borderRadius: '24px', border: '2px solid #000000' }}>
           <h2 style={{ fontFamily: 'var(--font-heading)', color: '#000000', display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '20px', fontSize: '1.5rem', fontWeight: 800 }}>
             <Users size={24} strokeWidth={2} color="#000000" /> Who We Are
           </h2>
           <p style={{ color: '#1e293b', lineHeight: '1.7', fontSize: '0.9375rem' }}>
-            The STEM Club at Greets Public School (GPS), Kochi is an active, student-driven innovation community. We provide a collaborative lab environment for curious minds to explore the frontiers of Science, Technology, Engineering, and Mathematics through hardware assembly, software development, and real-world experiments.
+            The STEM Club at Greets Public School (GPS), Kochi is an active, student-driven innovation community. <strong>STEM stands for Science, Technology, Engineering, and Maths</strong>. We provide a collaborative lab environment for curious minds to explore these frontiers through hardware assembly, software development, and real-world experiments.
           </p>
         </section>
 
@@ -144,33 +125,42 @@ const About = () => {
           </ul>
         </section>
 
-        {/* Teacher Selection Card */}
-        <section className="about-stagger-card gsap-card card" style={{ backgroundColor: '#ffffff', color: '#000000', padding: '32px', borderRadius: '26px', border: '2px solid #000000', gridColumn: '1 / -1' }}>
-          <h2 style={{ fontFamily: 'var(--font-heading)', color: '#000000', display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '16px', fontSize: '1.6rem', fontWeight: 900 }}>
-            <Medal size={26} strokeWidth={2} color="#000000" /> Teacher-Nominated Cohorts
-          </h2>
-          <p style={{ color: '#1e293b', lineHeight: '1.7', fontSize: '0.95rem', marginBottom: '1.5rem' }}>
-            To maintain high standards of lab safety, focused mentorship, and quality engineering, membership in the STEM Club is not open to random sign-ups. Candidates are handpicked and recommended by Greets Public School science and computing faculty, specifically selecting students who exhibit genuine curiosity, consistent initiative, and an eagerness to build.
-          </p>
-          <Link to="/join" className="btn btn-primary" style={{ padding: '0.85rem 1.85rem', fontSize: '0.875rem' }}>
-            View Selection Criteria <ArrowRight size={16} />
-          </Link>
-        </section>
-
-        <section className="about-stagger-card gsap-card card" style={{ backgroundColor: '#ffffff', color: '#000000', padding: '32px', borderRadius: '26px', border: '2px solid #000000', gridColumn: '1 / -1' }}>
+        <section className="about-stagger-card gsap-card card" style={{ backgroundColor: '#ffffff', color: '#000000', padding: '30px', borderRadius: '24px', border: '2px solid #000000' }}>
           <h2 style={{ fontFamily: 'var(--font-heading)', color: '#000000', display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '20px', fontSize: '1.5rem', fontWeight: 800 }}>
             <Lightbulb size={24} strokeWidth={2} color="#000000" /> Our Vision
           </h2>
-          <p style={{ color: '#1e293b', lineHeight: '1.7', fontSize: '1rem' }}>
-            To create an empowering environment for transforming ideas into real-world solutions, nurturing the next generation of inventors, researchers, and tech leaders at Greets Public School.
+          <p style={{ color: '#1e293b', lineHeight: '1.7', fontSize: '0.9375rem', marginBottom: '14px' }}>
+            To foster a culture of inquiry and hands-on discovery, equipping every student to transform conceptual science into real-world technological solutions.
+          </p>
+          <p style={{ color: '#1e293b', lineHeight: '1.7', fontSize: '0.9375rem' }}>
+            We aspire to nurture the next generation of engineers, scientific researchers, and ethical innovators ready to solve complex challenges for society.
           </p>
         </section>
       </div>
 
+      {/* Teacher Selection Card */}
+      <section className="about-stagger-card gsap-card card" style={{ backgroundColor: '#ffffff', color: '#000000', padding: '32px', borderRadius: '26px', border: '2px solid #000000', marginBottom: '60px' }}>
+        <h2 style={{ fontFamily: 'var(--font-heading)', color: '#000000', display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '16px', fontSize: '1.6rem', fontWeight: 900 }}>
+          <Medal size={26} strokeWidth={2} color="#000000" /> Teacher-Nominated Cohorts
+        </h2>
+        <p style={{ color: '#1e293b', lineHeight: '1.7', fontSize: '0.95rem', marginBottom: '1.5rem' }}>
+          To maintain high standards of lab safety, focused mentorship, and quality engineering, membership in the STEM Club is not open to random sign-ups. Candidates are handpicked and recommended by Greets Public School science and computing faculty, specifically selecting students who exhibit genuine curiosity, consistent initiative, and an eagerness to build.
+        </p>
+        <Link to="/join" className="btn btn-primary" style={{ padding: '0.85rem 1.85rem', fontSize: '0.875rem' }}>
+          View Selection Criteria <ArrowRight size={16} />
+        </Link>
+      </section>
+
       {/* STEM Core Disciplines */}
       <section style={{ marginBottom: '60px' }}>
-        <h2 style={{ fontFamily: 'var(--font-heading)', fontSize: '2rem', textAlign: 'center', marginBottom: '30px', color: '#ffffff', fontWeight: 800 }}>Core Disciplines</h2>
-        <div className="disciplines-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '20px' }}>
+        <div style={{ textAlign: 'center', marginBottom: '28px' }}>
+          <span className="section-label" style={{ color: '#ffffff' }}>What STEM Means</span>
+          <h2 style={{ fontFamily: 'var(--font-heading)', fontSize: '2rem', marginBottom: '8px', color: '#ffffff', fontWeight: 800 }}>Core Disciplines</h2>
+          <p style={{ color: 'rgba(255, 255, 255, 0.95)', fontSize: '1.05rem', fontWeight: 600 }}>
+            STEM stands for Science, Technology, Engineering, and Maths
+          </p>
+        </div>
+        <div className="disciplines-grid mobile-carousel" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '20px' }}>
           <div className="discipline-card gsap-card card" style={{ backgroundColor: '#ffffff', color: '#000000', padding: '26px', borderRadius: '22px', border: '2px solid #000000', display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', gap: '12px' }}>
             <FlaskConical size={32} strokeWidth={2} color="#000000" />
             <h3 style={{ fontFamily: 'var(--font-heading)', color: '#000000', fontWeight: 800 }}>Science</h3>
@@ -188,7 +178,7 @@ const About = () => {
           </div>
           <div className="discipline-card gsap-card card" style={{ backgroundColor: '#ffffff', color: '#000000', padding: '26px', borderRadius: '22px', border: '2px solid #000000', display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', gap: '12px' }}>
             <Sigma size={32} strokeWidth={2} color="#000000" />
-            <h3 style={{ fontFamily: 'var(--font-heading)', color: '#000000', fontWeight: 800 }}>Mathematics</h3>
+            <h3 style={{ fontFamily: 'var(--font-heading)', color: '#000000', fontWeight: 800 }}>Maths</h3>
             <p style={{ color: '#334155', fontSize: '0.875rem' }}>Algorithm design, sensor calibration curves, PID loop logic.</p>
           </div>
         </div>
@@ -197,7 +187,7 @@ const About = () => {
       {/* Club Values */}
       <section>
         <h2 style={{ fontFamily: 'var(--font-heading)', fontSize: '2rem', textAlign: 'center', marginBottom: '30px', color: '#ffffff', fontWeight: 800 }}>Club Values</h2>
-        <div className="values-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: '20px' }}>
+        <div className="values-grid mobile-carousel" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: '20px' }}>
           {[
             { label: 'Curiosity', icon: Brain },
             { label: 'Collaboration', icon: Handshake },

@@ -146,17 +146,20 @@ const JoinUs = () => {
           </div>
 
           {/* 3 Criteria Cards */}
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 300px), 1fr))',
-            gap: '1.5rem',
-            marginBottom: '4rem'
-          }}>
+          <div
+            className="mobile-carousel"
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 300px), 1fr))',
+              gap: '1.5rem',
+              marginBottom: '4rem'
+            }}
+          >
             {selectionCriteria.map((c, i) => (
               <div key={i} className="card card-body" style={{
                 background: '#ffffff',
                 border: '2px solid #000000',
-                borderRadius: '12px',
+                borderRadius: '22px',
                 padding: '2rem',
                 display: 'flex',
                 flexDirection: 'column',
@@ -166,7 +169,7 @@ const JoinUs = () => {
                 <div style={{
                   width: '52px',
                   height: '52px',
-                  borderRadius: '10px',
+                  borderRadius: '14px',
                   background: '#f1f5f9',
                   border: '1px solid #e2e8f0',
                   display: 'flex',
@@ -182,17 +185,20 @@ const JoinUs = () => {
           </div>
 
           {/* Quick Privileges Row */}
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
-            gap: '1rem',
-            marginBottom: '4rem'
-          }}>
+          <div
+            className="mobile-carousel"
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
+              gap: '1rem',
+              marginBottom: '4rem'
+            }}
+          >
             {clubPrivileges.map((p, i) => (
               <div key={i} className="card card-body" style={{
                 background: '#ffffff',
                 padding: '1.25rem',
-                borderRadius: '10px',
+                borderRadius: '18px',
                 border: '1.5px solid #000000',
                 display: 'flex',
                 alignItems: 'center',
