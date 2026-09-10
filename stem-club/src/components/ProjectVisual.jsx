@@ -159,23 +159,28 @@ export default function ProjectVisual({ projectId, title, category, color = '#25
 
             {/* Rain Drops - Row 1 */}
             <g transform="translate(50, 150)">
-              {[0, 1, 2, 3, 4].map((i, idx) => (
-                <line key={idx} x1={idx * 20} y1={0} x2={idx * 20 - 10} y2={random(idx * 8, idx * 8 + 20)} stroke="#1d4ed8" strokeWidth={random(1, 3)} opacity={random(0.5, 1)} />
-              ))}
+              <line x1={0} y1={0} x2={-10} y2={20} stroke="#1d4ed8" strokeWidth={2} opacity={0.8} />
+              <line x1={20} y1={0} x2={10} y2={35} stroke="#1d4ed8" strokeWidth={2} opacity={0.7} />
+              <line x1={40} y1={0} x2={30} y2={25} stroke="#1d4ed8" strokeWidth={1.5} opacity={0.6} />
+              <line x1={60} y1={0} x2={50} y2={30} stroke="#1d4ed8" strokeWidth={1.5} opacity={0.5} />
+              <line x1={80} y1={0} x2={70} y2={22} stroke="#1d4ed8" strokeWidth={1} opacity={0.4} />
             </g>
 
             {/* Rain Drops - Row 2 */}
             <g transform="translate(50, 200)">
-              {[0, 1, 2, 3, 4, 5].map((i, idx) => (
-                <line key={idx} x1={idx * 18} y1={0} x2={idx * 18 - 8} y2={random(idx * 6, idx * 6 + 15)} stroke="#1d4ed8" strokeWidth={random(1, 2)} opacity={random(0.3, 0.8)} />
-              ))}
+              <line x1={0} y1={0} x2={-8} y2={15} stroke="#1d4ed8" strokeWidth={1.5} opacity={0.6} />
+              <line x1={18} y1={0} x2={10} y2={25} stroke="#1d4ed8" strokeWidth={1.5} opacity={0.5} />
+              <line x1={36} y1={0} x2={28} y2={22} stroke="#1d4ed8" strokeWidth={1} opacity={0.4} />
+              <line x1={54} y1={0} x2={45} y2={20} stroke="#1d4ed8" strokeWidth={1} opacity={0.3} />
+              <line x1={72} y1={0} x2={63} y2={18} stroke="#1d4ed8" strokeWidth={1} opacity={0.3} />
             </g>
 
             {/* Rain Drops - Row 3 */}
             <g transform="translate(50, 250)">
-              {[0, 1, 2, 3].map((i, idx) => (
-                <line key={idx} x1={idx * 15} y1={0} x2={idx * 15 - 5} y2={random(idx * 5, idx * 5 + 12)} stroke="#1d4ed8" strokeWidth={random(1, 2)} opacity={random(0.2, 0.6)} />
-              ))}
+              <line x1={0} y1={0} x2={-5} y2={12} stroke="#1d4ed8" strokeWidth={1} opacity={0.4} />
+              <line x1={15} y1={0} x2={10} y2={18} stroke="#1d4ed8" strokeWidth={1} opacity={0.3} />
+              <line x1={30} y1={0} x2={25} y2={15} stroke="#1d4ed8" strokeWidth={0.5} opacity={0.25} />
+              <line x1={45} y1={0} x2={40} y2={12} stroke="#1d4ed8" strokeWidth={0.5} opacity={0.2} />
             </g>
 
             {/* Ground Reflection */}
