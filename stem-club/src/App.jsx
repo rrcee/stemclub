@@ -6,9 +6,7 @@ import Home from './pages/Home';
 const About = lazy(() => import('./pages/About'));
 const Projects = lazy(() => import('./pages/Projects'));
 const ProjectDetail = lazy(() => import('./pages/ProjectDetail'));
-const Activities = lazy(() => import('./pages/Activities'));
 const StemLab = lazy(() => import('./pages/StemLab'));
-const Events = lazy(() => import('./pages/Events'));
 const Achievements = lazy(() => import('./pages/Achievements'));
 const JoinUs = lazy(() => import('./pages/JoinUs'));
 const ThankYou = lazy(() => import('./pages/ThankYou'));
@@ -45,9 +43,7 @@ export default function App() {
             <Route path="about" element={<About />} />
             <Route path="projects" element={<Projects />} />
             <Route path="projects/:id" element={<ProjectDetail />} />
-            <Route path="activities" element={<Activities />} />
             <Route path="stem-lab" element={<StemLab />} />
-            <Route path="events" element={<Events />} />
             <Route path="achievements" element={<Achievements />} />
             <Route path="gallery" element={<Navigate to="/projects" replace />} />
             <Route path="resources" element={<Navigate to="/stem-lab" replace />} />

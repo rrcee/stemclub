@@ -267,7 +267,6 @@ export default function NotFound() {
           >
             {[
               { to: '/stem-lab', label: 'The STEM Lab', icon: Cpu },
-              { to: '/events', label: 'Events & Sprints', icon: Calendar },
               { to: '/about', label: 'About Club', icon: ArrowRight },
               { to: '/join', label: 'Teacher Selection', icon: RotateCcw }
             ].map((sec) => {
