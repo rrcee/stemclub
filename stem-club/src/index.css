@@ -1115,8 +1115,6 @@ h1, h2, h3, h4, h5, h6 {
 @media (max-width: 768px) {
   /* Trigger carousel only when there are 2 or more child cards */
   .mobile-carousel {
-    display: flex !important;
-    flex-direction: row !important;
     overflow-x: auto !important;
     overflow-y: hidden !important;
     scroll-snap-type: x mandatory !important;
@@ -1133,27 +1131,61 @@ h1, h2, h3, h4, h5, h6 {
     scrollbar-width: none !important;
     -ms-overflow-style: none !important;
     overscroll-behavior-x: contain !important;
+    /* Allow both flex and grid children - don't force display */
   }
 
   .mobile-carousel::-webkit-scrollbar {
     display: none !important;
   }
 
-  /* Each card in the carousel takes 85% viewport width to hint next card */
+  /* Cards inside carousel - work with both flex and grid layouts */
   .mobile-carousel > * {
-    flex: 0 0 85% !important;
-    min-width: 270px !important;
-    max-width: 325px !important;
-    scroll-snap-align: center !important;
-    scroll-snap-stop: always !important;
+    /* Flexible sizing - will respect grid auto-fit from inline styles */
+    flex: 0 0 auto;
+    /* For flex layout: each card takes ~85% width with gap */
+    /* For grid layout: inline styles will override */
+    min-width: 270px;
+    max-width: 325px;
+    scroll-snap-align: center;
+    scroll-snap-stop: always;
+    /* Reset display to allow grid children */
+    display: block;
   }
 
-  /* If only 1 card exists, disable carousel behavior and span full width */
+  /* If only 1 card exists, disable carousel scrolling behavior and span full width */
   .mobile-carousel > :only-child {
     flex: 1 1 100% !important;
     min-width: 0 !important;
     max-width: 100% !important;
     scroll-snap-align: none !important;
+    scroll-snap-stop: always !important;
+    /* Allow full width when only child */
+    overflow: visible !important;
+  }
+
+  /* Touch and scroll improvements */
+  .mobile-carousel {
+    touch-action: pan-x pan-y; /* Allow both axes for drag scrolling */
+  }
+  .mobile-carousel > * {
+    -webkit-tap-highlight-color: transparent;
+    -webkit-user-select: none;
+    user-select: none;
+    -webkit-touch-callout: none;
+  }
+  .mobile-carousel > *:focus-visible {
+    outline: 2px solid #000000;
+    outline-offset: 2px;
+  }
+
+  /* Reduce motion preference */
+  @media (prefers-reduced-motion: reduce) {
+    .mobile-carousel {
+      scroll-behavior: auto !important;
+    }
+    .mobile-carousel > * {
+      transition: none !important;
+    }
   }
 }
 
@@ -1215,5 +1247,51 @@ h1, h2, h3, h4, h5, h6 {
   .splash-blur { width: 245px; height: 245px; }
   .splash-card-2 { width: 240px; height: 240px; }
   .splash-ring { width: 290px; height: 290px; }
+}
+
+/* Carousel pagination indicators */
+.carousel-indicators {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.carousel-indicators button {
+  width: 0.75rem;
+  height: 0.75rem;
+  border: none;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.5);
+  border: 2px solid #000000;
+  cursor: pointer;
+  padding: 0;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.carousel-indicators button:hover,
+.carousel-indicators button:focus-visible {
+  background: #000000;
+  transform: scale(1.2);
+}
+
+.carousel-indicators button.active {
+  background: #000000;
+  transform: scale(1.4);
+}
+
+/* Hover pause on auto-scroll */
+.mobile-carousel.auto-scroll:hover {
+  animation-play-state: paused;
+}
+
+/* Scrollbar thumb color */
+::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.3);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
 }
 
