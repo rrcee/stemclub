@@ -48,7 +48,7 @@ export const achievements = [
     id: 6,
     category: 'Projects',
     title: 'IoT Projects Deployed',
-    description: 'Successfully developed and tested IoT-based projects including smart irrigation and weather monitoring systems.',
+    description: 'Successfully developed and tested IoT-based projects including autonomous systems and renewable energy models.',
     date: null,
     icon: 'Wifi',
     color: '#0ea5e9'

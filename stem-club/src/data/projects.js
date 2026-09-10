@@ -1,70 +1,5 @@
 export const projects = [
   {
-    id: 'smart-irrigation-system',
-    title: 'Smart Irrigation System',
-    category: 'IoT',
-    status: 'Completed',
-    summary: 'IoT-based automatic plant watering using soil moisture sensors and ESP32.',
-    description: 'An intelligent irrigation system that monitors soil moisture levels in real-time and automatically activates water pumps when the soil becomes dry. The system uses ESP32 microcontrollers connected to capacitive soil moisture sensors to collect data, which is then processed to determine optimal watering schedules.',
-    problem: 'Traditional irrigation methods waste significant amounts of water due to fixed schedules that do not account for actual soil conditions, weather patterns, or plant-specific needs. Over-watering leads to waterlogging and nutrient leaching, while under-watering stresses plants and reduces yield.',
-    solution: 'The Smart Irrigation System uses a network of soil moisture sensors connected to an ESP32 microcontroller to continuously monitor moisture levels. When readings fall below a configurable threshold, the system activates solenoid valves to deliver water precisely where needed. Data is logged for analysis and the system can be monitored remotely via a web dashboard.',
-    technologies: ['ESP32', 'Soil Moisture Sensors', 'IoT', 'Automation', 'Relay Modules', 'Web Dashboard'],
-    howItWorks: [
-      'Capacitive soil moisture sensors are placed at root depth in each zone',
-      'ESP32 reads sensor data at regular intervals and processes readings',
-      'If moisture drops below the set threshold, the relay module activates the water pump',
-      'Data is transmitted to a local server for logging and visualization',
-      'A web-based dashboard displays real-time moisture levels and watering history'
-    ],
-    results: [
-      'Successfully automated watering for a test garden with multiple plant zones',
-      'Reduced water consumption compared to manual schedule-based watering',
-      'Demonstrated reliable sensor readings across varying soil conditions',
-      'Built a functional web dashboard for remote monitoring'
-    ],
-    futureImprovements: [
-      'Integration with weather forecast APIs to prevent watering before rain',
-      'Solar-powered sensor nodes for off-grid deployment',
-      'Machine learning model to predict optimal watering times',
-      'Mobile application for notifications and remote control'
-    ],
-    image: null,
-    color: '#10b981'
-  },
-  {
-    id: 'weather-monitoring-station',
-    title: 'Weather Monitoring Station',
-    category: 'IoT',
-    status: 'Completed',
-    summary: 'A system capable of measuring temperature, humidity, and atmospheric pressure.',
-    description: 'A compact weather monitoring station built using microcontrollers and environmental sensors. The station measures temperature, humidity, and atmospheric pressure in real-time, displays readings on an LCD screen, and logs data for trend analysis and visualization.',
-    problem: 'Understanding local weather patterns is important for agriculture, outdoor activities, and environmental studies. Commercial weather stations can be expensive and often do not allow access to raw data for educational analysis and experimentation.',
-    solution: 'The Weather Monitoring Station uses affordable sensors connected to a microcontroller to collect environmental data. A DHT22 sensor measures temperature and humidity, while a BMP280 sensor captures atmospheric pressure. Data is displayed locally on an LCD and transmitted to a computer for logging and graphing.',
-    technologies: ['DHT22 Sensor', 'BMP280 Sensor', 'Arduino', 'LCD Display', 'IoT', 'Data Visualization'],
-    howItWorks: [
-      'DHT22 sensor measures ambient temperature and relative humidity',
-      'BMP280 barometric pressure sensor measures atmospheric pressure and altitude',
-      'Arduino microcontroller reads sensor data via digital and I2C interfaces',
-      'Current readings are displayed on a 16x2 LCD screen',
-      'Data is transmitted via serial connection to a computer for logging',
-      'A Python script generates graphs showing trends over time'
-    ],
-    results: [
-      'Built a fully functional weather station with three measurement capabilities',
-      'Collected and graphed environmental data over extended periods',
-      'Demonstrated accurate readings when compared with standard instruments',
-      'Students learned sensor interfacing, data collection, and visualization'
-    ],
-    futureImprovements: [
-      'Add wind speed and direction measurement using an anemometer',
-      'Implement wireless data transmission using ESP32 or LoRa',
-      'Build a web-based dashboard for remote access to weather data',
-      'Add rainfall measurement capability'
-    ],
-    image: null,
-    color: '#0ea5e9'
-  },
-  {
     id: 'line-following-robot',
     title: 'Line Following Robot',
     category: 'Robotics',
@@ -97,37 +32,68 @@ export const projects = [
     color: '#f59e0b'
   },
   {
-    id: 'smart-home-automation',
-    title: 'Smart Home Automation',
-    category: 'IoT',
-    status: 'In Progress',
-    summary: 'A connected automation system allowing appliances to be controlled using Wi-Fi, mobile interfaces and sensors.',
-    description: 'A home automation system that enables remote control of electrical appliances through a mobile interface and automated triggers based on sensor data. The system uses an ESP32 microcontroller as the central hub, connecting to relays that control lights, fans, and other devices.',
-    problem: 'Conventional home electrical systems lack remote control capabilities and intelligent automation. Manually operating switches is inconvenient and does not allow for energy-saving automation such as turning off lights when no one is present.',
-    solution: 'The Smart Home Automation system connects household appliances to relay modules controlled by an ESP32 microcontroller. Users can toggle devices through a mobile web interface served by the ESP32. Additionally, PIR motion sensors and light-dependent resistors enable automatic control based on occupancy and ambient light levels.',
-    technologies: ['ESP32', 'Relay Modules', 'Wi-Fi', 'PIR Sensors', 'LDR', 'Mobile Web Interface'],
+    id: 'rain-simulation-model',
+    title: 'Rain Simulation Model',
+    category: 'Science',
+    status: 'Completed',
+    summary: 'An educational model demonstrating the water cycle and rainfall patterns.',
+    description: 'A desktop rain simulation model that demonstrates precipitation patterns, water cycle dynamics, and storm systems. The model uses LED arrays and mist generators to visualize rainfall intensity and distribution patterns, helping students understand hydrology and meteorology concepts through hands-on observation.',
+    problem: 'Understanding the water cycle and rainfall patterns remains abstract without visual demonstration. Students need to observe how rain forms, moves, and impacts the environment to grasp meteorology and hydrology concepts.',
+    solution: 'The Rain Simulation Model uses controlled LED arrays to simulate rainfall intensity zones, mist generators to create visible precipitation, and flow channels to demonstrate water collection and runoff patterns. Integrated sensors monitor humidity and trigger realistic rain sequences.',
+    technologies: ['LED Arrays', 'Mist Generators', 'Arduino', 'Humidity Sensors', 'Water Pump', 'Educational Display'],
     howItWorks: [
-      'ESP32 hosts a web server accessible on the local Wi-Fi network',
-      'Relay modules are wired in series with appliance power lines',
-      'The web interface displays toggle buttons for each connected device',
-      'PIR sensors detect room occupancy for automatic lighting control',
-      'LDR sensors measure ambient light to adjust artificial lighting',
-      'All state changes are logged and displayed in the interface'
+      'Humidity sensors monitor ambient moisture levels',
+      'When thresholds are met, LED arrays simulate rainfall intensity',
+      'Mist generators produce visible precipitation particles',
+      'Water collection channels demonstrate runoff and infiltration',
+      'Real-time display shows rainfall accumulation and distribution'
     ],
     results: [
-      'Successfully controlled multiple appliances from a smartphone browser',
-      'Implemented motion-activated lighting in a test setup',
-      'Built a responsive mobile web interface for device management',
-      'Demonstrated the concept at the school science exhibition'
+      'Built a functional rain simulation demonstrating various storm patterns',
+      'Students observed water cycle dynamics in a controlled environment',
+      'Demonstrated rainfall impact on different surface types',
+      'Used as an educational tool in science classes for hydrology lessons'
     ],
     futureImprovements: [
-      'Add voice control integration using Google Assistant or Alexa',
-      'Implement scheduling and timer-based automation',
-      'Add energy consumption monitoring per device',
-      'Develop a dedicated mobile application'
+      'Add temperature integration to simulate evaporative cooling',
+      'Implement wind effects on rainfall distribution',
+      'Create interactive controls for adjusting storm intensity',
+      'Build a networked version for comparative regional studies'
     ],
     image: null,
-    color: '#06b6d4'
+    color: '#3b82f6'
+  },
+  {
+    id: 'school-radio',
+    title: 'School Radio',
+    category: 'Communication',
+    status: 'In Progress',
+    summary: 'A student-run internet radio station for school broadcasts and events.',
+    description: 'An internet radio streaming setup allowing students to broadcast music, announcements, and school events live. The station features a mixing console, microphone setup, and live streaming platform integration for school community engagement.',
+    problem: 'Students lack a platform for developing communication skills, sharing ideas, and broadcasting school events to the school community. Traditional PA systems are limited and do not reach remote audiences.',
+    solution: 'The School Radio uses an ESP32-based streaming setup connected to a condenser microphone and audio mixer. Students host live shows, broadcast school events, and play curated music. Audio is streamed via an online platform accessible to the school community via web browser or mobile app.',
+    technologies: ['ESP32', 'Condenser Microphone', 'Audio Mixer', 'Streaming Platform', 'Web Interface', 'Mobile App'],
+    howItWorks: [
+      'ESP32 connects to Wi-Fi and streams audio to an online platform',
+      'Condenser microphone captures audio input from students',
+      'Audio mixer adjusts levels and adds effects',
+      'Live stream is accessible via web browser or mobile app',
+      'Students host shows, announce events, and play curated content'
+    ],
+    results: [
+      'Launched the school radio station with weekly broadcast schedule',
+      'Students developed communication and audio production skills',
+      'School events are live-streamed to the wider community',
+      'Increased student engagement and school community connectivity'
+    ],
+    futureImprovements: [
+      'Add call-in listener interaction features',
+      'Integrate with school newsletter and social media',
+      'Develop pre-recorded show capabilities',
+      'Upgrade audio hardware for professional-quality sound'
+    ],
+    image: null,
+    color: '#8b5cf6'
   },
   {
     id: 'renewable-energy-model',
@@ -144,8 +110,7 @@ export const projects = [
       'A miniature wind turbine generates power from air movement',
       'Both sources connect through a charge controller to prevent battery overcharge',
       'A rechargeable battery stores the generated energy',
-      'LED loads demonstrate energy consumption from the stored supply',
-      'Voltage and current sensors connected to an Arduino display real-time measurements'
+      'LED lights serve as electrical loads. A monitoring circuit with voltage and current sensors displays generation and consumption data, making the energy flow visible and measurable.',
     ],
     results: [
       'Built a working model demonstrating both solar and wind energy generation',

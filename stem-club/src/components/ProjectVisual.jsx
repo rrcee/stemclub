@@ -3,109 +3,6 @@ import React from 'react';
 export default function ProjectVisual({ projectId, title, category, color = '#2596be', isHero = false, style = {} }) {
   const renderVisual = () => {
     switch (projectId) {
-      case 'smart-irrigation-system':
-        return (
-          <svg viewBox="0 0 600 360" width="100%" height="100%" style={{ display: 'block', background: '#000000' }}>
-            <defs>
-              <pattern id="grid-patt" width="24" height="24" patternUnits="userSpaceOnUse">
-                <line x1="0" y1="0" x2="24" y2="0" stroke="rgba(255,255,255,0.12)" strokeWidth="1" />
-                <line x1="0" y1="0" x2="0" y2="24" stroke="rgba(255,255,255,0.12)" strokeWidth="1" />
-              </pattern>
-            </defs>
-
-            <rect width="600" height="360" fill="url(#grid-patt)" />
-
-            {/* Soil Bed */}
-            <rect x="40" y="210" width="520" height="110" rx="8" fill="#1e293b" stroke="#ffffff" strokeWidth="2" />
-
-            {/* Plant Stem & Leaves */}
-            <path d="M 160 210 Q 155 140 170 110 Q 185 140 180 210 Z" fill="#2596be" stroke="#ffffff" strokeWidth="2" />
-            <path d="M 165 150 C 130 140 120 120 125 110 C 145 115 160 135 165 150 Z" fill="#2596be" stroke="#ffffff" strokeWidth="1.5" />
-            <path d="M 168 135 C 200 125 215 105 210 95 C 190 100 175 120 168 135 Z" fill="#2596be" stroke="#ffffff" strokeWidth="1.5" />
-
-            {/* Moisture Sensor Probe In Soil */}
-            <g transform="translate(240, 160)">
-              <rect x="0" y="0" width="36" height="50" rx="4" fill="#000000" stroke="#ffffff" strokeWidth="2" />
-              <text x="18" y="24" fill="#ffffff" fontSize="9" fontFamily="monospace" textAnchor="middle" fontWeight="bold">CAP</text>
-              <text x="18" y="38" fill="#ffffff" fontSize="8" fontFamily="monospace" textAnchor="middle">v1.2</text>
-              <rect x="6" y="50" width="8" height="75" rx="3" fill="#ffffff" stroke="#000000" strokeWidth="1" />
-              <rect x="22" y="50" width="8" height="75" rx="3" fill="#ffffff" stroke="#000000" strokeWidth="1" />
-              <path d="M 18 0 C 18 -40 290 -20 340 30" fill="none" stroke="#2596be" strokeWidth="2" strokeDasharray="4 4" />
-            </g>
-
-            {/* ESP32 Controller Box */}
-            <g transform="translate(340, 45)">
-              <rect x="0" y="0" width="140" height="90" rx="8" fill="#000000" stroke="#ffffff" strokeWidth="2" />
-              <rect x="10" y="10" width="120" height="30" rx="4" fill="#2596be" />
-              <text x="70" y="28" fill="#ffffff" fontSize="10" fontFamily="monospace" textAnchor="middle" fontWeight="bold">ESP32 CONTROLLER</text>
-              <circle cx="25" cy="55" r="5" fill="#ffffff" />
-              <text x="40" y="58" fill="#ffffff" fontSize="9" fontFamily="monospace">MCU: ACTIVE</text>
-              <circle cx="25" cy="72" r="5" fill="#2596be" />
-              <text x="40" y="75" fill="#ffffff" fontSize="9" fontFamily="monospace">VALVE: READY</text>
-            </g>
-
-            {/* Drip Irrigation Pipe */}
-            <path d="M 50 175 L 550 175" stroke="#ffffff" strokeWidth="4" strokeLinecap="round" />
-            <circle cx="160" cy="183" r="4" fill="#2596be" />
-            <circle cx="260" cy="183" r="4" fill="#2596be" />
-
-            {/* Telemetry Overlay Box */}
-            <g transform="translate(50, 45)">
-              <rect x="0" y="0" width="160" height="60" rx="6" fill="#000000" stroke="#ffffff" strokeWidth="2" />
-              <text x="12" y="22" fill="#ffffff" fontSize="9" fontFamily="monospace">SOIL MOISTURE</text>
-              <text x="12" y="46" fill="#ffffff" fontSize="20" fontFamily="monospace" fontWeight="bold">42.8 %</text>
-              <text x="100" y="46" fill="#2596be" fontSize="10" fontFamily="monospace" fontWeight="bold">OPTIMAL</text>
-            </g>
-          </svg>
-        );
-
-      case 'weather-monitoring-station':
-        return (
-          <svg viewBox="0 0 600 360" width="100%" height="100%" style={{ display: 'block', background: '#000000' }}>
-            <rect x="30" y="30" width="540" height="300" rx="10" fill="#000000" stroke="#ffffff" strokeWidth="2" />
-
-            {/* Gauge 1: Temperature */}
-            <g transform="translate(70, 70)">
-              <rect x="0" y="0" width="130" height="110" rx="6" fill="#1e293b" stroke="#ffffff" strokeWidth="1.5" />
-              <text x="15" y="25" fill="#ffffff" fontSize="9" fontFamily="monospace">TEMPERATURE</text>
-              <text x="15" y="65" fill="#ffffff" fontSize="24" fontFamily="monospace" fontWeight="bold">27.4°C</text>
-              <path d="M 15 85 L 115 85" stroke="#000000" strokeWidth="5" strokeLinecap="round" />
-              <path d="M 15 85 L 75 85" stroke="#2596be" strokeWidth="5" strokeLinecap="round" />
-              <text x="15" y="100" fill="#ffffff" fontSize="8" fontFamily="monospace">DHT22 SENSOR</text>
-            </g>
-
-            {/* Gauge 2: Humidity */}
-            <g transform="translate(235, 70)">
-              <rect x="0" y="0" width="130" height="110" rx="6" fill="#1e293b" stroke="#ffffff" strokeWidth="1.5" />
-              <text x="15" y="25" fill="#ffffff" fontSize="9" fontFamily="monospace">HUMIDITY</text>
-              <text x="15" y="65" fill="#ffffff" fontSize="24" fontFamily="monospace" fontWeight="bold">68.2 %</text>
-              <path d="M 15 85 L 115 85" stroke="#000000" strokeWidth="5" strokeLinecap="round" />
-              <path d="M 15 85 L 85 85" stroke="#2596be" strokeWidth="5" strokeLinecap="round" />
-              <text x="15" y="100" fill="#ffffff" fontSize="8" fontFamily="monospace">STATUS: NORMAL</text>
-            </g>
-
-            {/* Gauge 3: Atmospheric Pressure */}
-            <g transform="translate(400, 70)">
-              <rect x="0" y="0" width="130" height="110" rx="6" fill="#1e293b" stroke="#ffffff" strokeWidth="1.5" />
-              <text x="15" y="25" fill="#ffffff" fontSize="9" fontFamily="monospace">BAROMETER</text>
-              <text x="15" y="65" fill="#ffffff" fontSize="18" fontFamily="monospace" fontWeight="bold">1013.8 hPa</text>
-              <path d="M 15 85 L 115 85" stroke="#000000" strokeWidth="5" strokeLinecap="round" />
-              <path d="M 15 85 L 95 85" stroke="#2596be" strokeWidth="5" strokeLinecap="round" />
-              <text x="15" y="100" fill="#ffffff" fontSize="8" fontFamily="monospace">BMP280 SENSOR</text>
-            </g>
-
-            {/* Oscillograph Waveform */}
-            <g transform="translate(70, 205)">
-              <rect x="0" y="0" width="460" height="100" rx="6" fill="#000000" stroke="#ffffff" strokeWidth="1.5" />
-              <text x="15" y="22" fill="#ffffff" fontSize="9" fontFamily="monospace">TELEMETRY STREAM // 24-HOUR WAVEFORM</text>
-              <line x1="15" y1="50" x2="445" y2="50" stroke="rgba(255,255,255,0.15)" strokeWidth="1" />
-              <line x1="15" y1="75" x2="445" y2="75" stroke="rgba(255,255,255,0.15)" strokeWidth="1" />
-              <path d="M 15 70 Q 60 50 120 60 T 220 45 T 320 55 T 445 48" fill="none" stroke="#2596be" strokeWidth="2.5" />
-              <path d="M 15 50 Q 80 80 180 75 T 280 60 T 380 70 T 445 65" fill="none" stroke="#ffffff" strokeWidth="1.5" strokeDasharray="3 3" />
-            </g>
-          </svg>
-        );
-
       case 'line-following-robot':
         return (
           <svg viewBox="0 0 600 360" width="100%" height="100%" style={{ display: 'block', background: '#000000' }}>
@@ -247,6 +144,85 @@ export default function ProjectVisual({ projectId, title, category, color = '#25
               <rect x="10" y="10" width="80" height="30" rx="3" fill="#1e293b" />
               <rect x="10" y="10" width="65" height="30" rx="3" fill="#2596be" />
               <text x="50" y="30" fill="#ffffff" fontSize="11" fontFamily="monospace" textAnchor="middle" fontWeight="bold">82 %</text>
+            </g>
+          </svg>
+        );
+
+      case 'rain-simulation-model':
+        return (
+          <svg viewBox="0 0 600 360" width="100%" height="100%" style={{ display: 'block', background: '#000000' }}>
+            {/* Storm Cloud */}
+            <g transform="translate(200, 80)">
+              <path d="M 100 0 Q 0 50 100 100 Q 200 50 300 0 Q 500 50 500 100 Q 600 50 500 0 Q 400 50 300 100 Q 200 50 100 100 Z" fill="#1e3a82" />
+              <path d="M 150 20 Q 100 50 200 80 Q 300 20 300 80" fill="#1e3a82" opacity="0.7" />
+            </g>
+
+            {/* Rain Drops - Row 1 */}
+            <g transform="translate(50, 150)">
+              {[0, 1, 2, 3, 4].map((i, idx) => (
+                <line key={idx} x1={idx * 20} y1={0} x2={idx * 20 - 10} y2={random(idx * 8, idx * 8 + 20)} stroke="#1d4ed8" strokeWidth={random(1, 3)} opacity={random(0.5, 1)} />
+              ))}
+            </g>
+
+            {/* Rain Drops - Row 2 */}
+            <g transform="translate(50, 200)">
+              {[0, 1, 2, 3, 4, 5].map((i, idx) => (
+                <line key={idx} x1={idx * 18} y1={0} x2={idx * 18 - 8} y2={random(idx * 6, idx * 6 + 15)} stroke="#1d4ed8" strokeWidth={random(1, 2)} opacity={random(0.3, 0.8)} />
+              ))}
+            </g>
+
+            {/* Rain Drops - Row 3 */}
+            <g transform="translate(50, 250)">
+              {[0, 1, 2, 3].map((i, idx) => (
+                <line key={idx} x1={idx * 15} y1={0} x2={idx * 15 - 5} y2={random(idx * 5, idx * 5 + 12)} stroke="#1d4ed8" strokeWidth={random(1, 2)} opacity={random(0.2, 0.6)} />
+              ))}
+            </g>
+
+            {/* Ground Reflection */}
+            <rect width="600" height="40" fill="#0f172a" opacity="0.3" />
+
+            {/* Rain Intensity Label */}
+            <text x="300" y="340" textAnchor="middle" fill="#93c5fd" fontSize="14" fontFamily="monospace">Rain Simulation</text>
+          </svg>
+        );
+
+      case 'school-radio':
+        return (
+          <svg viewBox="0 0 600 360" width="100%" height="100%" style={{ display: 'block', background: '#000000' }}>
+            {/* Radio Body */}
+            <rect x="50" y="80" width="500" height="200" rx="8" fill="#1e293b" stroke="#ffffff" strokeWidth="2" />
+
+            {/* Tuning Dial */}
+            <circle cx="300" cy="160" r="40" fill="#000000" stroke="#ffffff" strokeWidth="2" />
+            <circle cx="300" cy="160" r="30" fill="none" stroke="#10b981" strokeWidth="2" />
+            <line x1="300" y1="40" x2="300" y2="280" stroke="#10b981" strokeWidth="1" />
+            <circle cx="300" cy="40" r="8" fill="#10b981" />
+            <circle cx="300" cy="280" r="8" fill="#10b981" />
+
+            {/* Antenna */}
+            <line x1="300" y1="80" x2="300" y2="30" stroke="#10b981" strokeWidth="2" />
+            <line x1="295" y1="25" x2="305" y2="25" stroke="#10b981" strokeWidth="1" />
+            <line x1="290" y1="20" x2="310" y2="20" stroke="#10b981" strokeWidth="1" />
+
+            {/* Speaker */}
+            <rect x="200" y="200" width="200" height="80" rx="6" fill="#000000" stroke="#10b981" strokeWidth="1.5" />
+            <text x="300" y="240" textAnchor="middle" fill="#10b981" fontSize="14" fontFamily="monospace">LIVE</text>
+
+            {/* Microphone */}
+            <g transform="translate(100, 260)">
+              <path d="M 0 0 Q 20 0 30 20 Q 20 40 0 40 Z" fill="#10b981" />
+              <ellipse cx="15" cy="5" rx="5" ry="2" fill="#10b981" />
+            </g>
+
+            {/* Call Sign */}
+            <text x="300" y="320" textAnchor="middle" fill="#93c5fd" fontSize="12" fontFamily="monospace">GPS RADIO</text>
+
+            {/* Signal Strength */}
+            <g transform="translate(500, 160)">
+              <circle cx="0" cy="0" r="12" fill="#000000" stroke="#10b981" strokeWidth="2" />
+              <circle cx="0" cy="0" r="6" fill="#10b981" />
+              <line x1="-12" y1="0" x2="-20" y2="0" stroke="#10b981" strokeWidth="1" />
+              <text x="-25" y="0" fill="#93c5fd" fontSize="9" fontFamily="monospace">STRONG</text>
             </g>
           </svg>
         );
