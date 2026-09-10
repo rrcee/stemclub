@@ -1157,3 +1157,63 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
+/* Splash screen logo sizing */
+.splash-stage {
+  position: relative;
+  width: 230px;
+  height: 230px;
+}
+.splash-card-1 {
+  position: relative;
+  width: 180px;
+  height: 180px;
+  border-radius: 34px;
+  background-color: #ffffff;
+  border: 3px solid #000000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.28), 0 0 0 6px rgba(255, 255, 255, 0.4);
+  overflow: hidden;
+}
+.splash-card-2 {
+  position: relative;
+  width: 175px;
+  height: 175px;
+  border-radius: 34px;
+  background-color: #ffffff;
+  border: 3px solid #000000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px;
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.28), 0 0 0 6px rgba(255, 255, 255, 0.4);
+  overflow: hidden;
+}
+.splash-blur {
+  position: absolute;
+  width: 180px;
+  height: 180px;
+  borderRadius: 36px;
+  background: rgba(255, 255, 255, 0.25);
+  filter: blur(20px);
+  pointerEvents: none;
+}
+.splash-ring {
+  position: absolute;
+  width: 220px;
+  height: 220px;
+  borderRadius: 50%;
+  border: 2px dashed rgba(255, 255, 255, 0.65);
+  pointerEvents: none;
+}
+
+@media (max-width: 767px) {
+  .splash-stage { width: 300px; height: 300px; }
+  .splash-card-1 { width: 245px; height: 245px; }
+  .splash-blur { width: 245px; height: 245px; }
+  .splash-card-2 { width: 240px; height: 240px; }
+  .splash-ring { width: 290px; height: 290px; }
+}
+

@@ -202,8 +202,9 @@ export default function SplashScreen({ onFinish }) {
             width: '100%'
           }}
         >
-          <div style={{ position: 'relative', width: '230px', height: '230px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+          <div className="splash-stage" style={{ position: 'relative', width: '230px', height: '230px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
             <div
+              className="splash-blur"
               style={{
                 position: 'absolute',
                 width: '180px',
@@ -217,6 +218,7 @@ export default function SplashScreen({ onFinish }) {
 
             <div
               ref={card1Ref}
+              className="splash-card-1"
               style={{
                 position: 'relative',
                 width: '180px',
@@ -324,9 +326,10 @@ export default function SplashScreen({ onFinish }) {
             width: '100%'
           }}
         >
-          <div style={{ position: 'relative', width: '230px', height: '230px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+          <div className="splash-stage" style={{ position: 'relative', width: '230px', height: '230px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
             <div
               ref={ring2Ref}
+              className="splash-ring"
               style={{
                 position: 'absolute',
                 width: '220px',
@@ -338,6 +341,7 @@ export default function SplashScreen({ onFinish }) {
             />
 
             <div
+              className="splash-blur"
               style={{
                 position: 'absolute',
                 width: '180px',
@@ -351,6 +355,7 @@ export default function SplashScreen({ onFinish }) {
 
             <div
               ref={card2Ref}
+              className="splash-card-2"
               style={{
                 position: 'relative',
                 width: '175px',
