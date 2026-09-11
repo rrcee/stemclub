@@ -1142,10 +1142,10 @@ h1, h2, h3, h4, h5, h6 {
   .mobile-carousel > * {
     /* Flexible sizing - will respect grid auto-fit from inline styles */
     flex: 0 0 auto;
-    /* For flex layout: each card takes ~85% width with gap */
+    /* For flex layout: each card takes full width with gap */
     /* For grid layout: inline styles will override */
-    min-width: 270px;
-    max-width: 325px;
+    min-width: 200px;
+    max-width: 100%;
     scroll-snap-align: center;
     scroll-snap-stop: always;
     /* Reset display to allow grid children */
@@ -1172,6 +1172,8 @@ h1, h2, h3, h4, h5, h6 {
     -webkit-user-select: none;
     user-select: none;
     -webkit-touch-callout: none;
+    /* Minimum touch target size */
+    min-height: 44px;
   }
   .mobile-carousel > *:focus-visible {
     outline: 2px solid #000000;
