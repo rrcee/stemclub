@@ -3,7 +3,7 @@ export const projects = [
     id: 'line-following-robot',
     title: 'Line Following Robot',
     category: 'Robotics',
-    status: 'Completed',
+    status: 'In Progress',
     summary: 'An autonomous robot capable of following a predefined path using sensors.',
     description: 'A mobile robot that autonomously follows a line drawn on the ground using infrared sensors. The robot adjusts its speed and direction in real-time based on sensor readings to stay on course, demonstrating fundamental concepts of robotics, sensor integration, and control systems.',
     problem: 'Teaching robotics concepts requires hands-on experience with sensor-based decision making, motor control, and autonomous behavior. A line-following robot is an ideal platform for learning these concepts while producing a tangible, demonstrable result.',
@@ -30,38 +30,6 @@ export const projects = [
     ],
     image: null,
     color: '#f59e0b'
-  },
-  {
-    id: 'rain-simulation-model',
-    title: 'Rain Simulation Model',
-    category: 'Science',
-    status: 'Completed',
-    summary: 'An educational model demonstrating the water cycle and rainfall patterns.',
-    description: 'A desktop rain simulation model that demonstrates precipitation patterns, water cycle dynamics, and storm systems. The model uses LED arrays and mist generators to visualize rainfall intensity and distribution patterns, helping students understand hydrology and meteorology concepts through hands-on observation.',
-    problem: 'Understanding the water cycle and rainfall patterns remains abstract without visual demonstration. Students need to observe how rain forms, moves, and impacts the environment to grasp meteorology and hydrology concepts.',
-    solution: 'The Rain Simulation Model uses controlled LED arrays to simulate rainfall intensity zones, mist generators to create visible precipitation, and flow channels to demonstrate water collection and runoff patterns. Integrated sensors monitor humidity and trigger realistic rain sequences.',
-    technologies: ['LED Arrays', 'Mist Generators', 'Arduino', 'Humidity Sensors', 'Water Pump', 'Educational Display'],
-    howItWorks: [
-      'Humidity sensors monitor ambient moisture levels',
-      'When thresholds are met, LED arrays simulate rainfall intensity',
-      'Mist generators produce visible precipitation particles',
-      'Water collection channels demonstrate runoff and infiltration',
-      'Real-time display shows rainfall accumulation and distribution'
-    ],
-    results: [
-      'Built a functional rain simulation demonstrating various storm patterns',
-      'Students observed water cycle dynamics in a controlled environment',
-      'Demonstrated rainfall impact on different surface types',
-      'Used as an educational tool in science classes for hydrology lessons'
-    ],
-    futureImprovements: [
-      'Add temperature integration to simulate evaporative cooling',
-      'Implement wind effects on rainfall distribution',
-      'Create interactive controls for adjusting storm intensity',
-      'Build a networked version for comparative regional studies'
-    ],
-    image: null,
-    color: '#3b82f6'
   },
   {
     id: 'school-radio',
