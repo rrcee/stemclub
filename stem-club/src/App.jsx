@@ -7,6 +7,7 @@ const About = lazy(() => import('./pages/About'));
 const Projects = lazy(() => import('./pages/Projects'));
 const ProjectDetail = lazy(() => import('./pages/ProjectDetail'));
 const Achievements = lazy(() => import('./pages/Achievements'));
+const Magazine = lazy(() => import('./pages/Magazine'));
 const JoinUs = lazy(() => import('./pages/JoinUs'));
 const ThankYou = lazy(() => import('./pages/ThankYou'));
 const NotFound = lazy(() => import('./pages/NotFound'));
@@ -40,6 +41,7 @@ export default function App() {
           <Route path="/" element={<Layout />}>
             <Route index element={<Home />} />
             <Route path="about" element={<About />} />
+            <Route path="magazine" element={<Magazine />} />
             <Route path="projects" element={<Projects />} />
             <Route path="projects/:id" element={<ProjectDetail />} />
             <Route path="achievements" element={<Achievements />} />

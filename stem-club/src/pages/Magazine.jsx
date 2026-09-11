@@ -38,27 +38,6 @@ export default function Magazine() {
           </Link>
         </div>
         
-        <div style={{ margin: '2rem 0', textAlign: 'center' }}>
-          <p style={{ marginBottom: '1rem', color: 'rgba(255, 255, 255, 0.7)', fontSize: '0.9375rem' }}>
-            School Magazine Video Preview
-          </p>
-          
-          <video
-            controls
-            style={{
-              width: '100%',
-              maxWidth: '640px',
-              borderRadius: '12px',
-              background: '#000000',
-              margin: '0 auto'
-            }}
-            fallback="true"
-          >
-            <source src="/assets/upscaled-video (1).mp4" type="video/mp4" />
-            Your browser does not support the video tag.
-          </video>
-        </div>
-        
         <p style={{ marginTop: '2rem', marginBottom: '0', color: 'rgba(255, 255, 255, 0.5)', fontSize: '0.8125rem' }}>
           Published by Greets Public School · CBSE Affiliated
         </p>
@@ -67,6 +46,10 @@ export default function Magazine() {
           <p style={{ margin: '0', color: 'rgba(255, 255, 255, 0.5)', fontSize: '0.875rem' }}>
             If the PDF does not open, please ensure you have a PDF viewer installed.
             The magazine contains student articles, project highlights, and club updates.
+            <br/>
+            To add your own magazine PDF, place the file at:
+            <br/>
+            <code>public/assets/school-magazine.pdf</code>
           </p>
         </div>
       </div>
