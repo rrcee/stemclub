@@ -2,8 +2,7 @@ import { useState } from 'react';
 import { useDocumentTitle } from '../hooks/useScrollReveal';
 
 const PDF_SRC = '/assets/school-magazine.pdf';
-// File on disk is "upscaled-video (1).mp4" — URL-encoded for safe serving.
-const VIDEO_SRC = '/assets/upscaled-video%20(1).mp4';
+const VIDEO_SRC = '/assets/magazine-video.mp4';
 
 export default function Magazine() {
   useDocumentTitle('Magazine — GPS STEM Club');
