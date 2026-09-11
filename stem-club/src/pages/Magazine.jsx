@@ -10,7 +10,7 @@ export default function Magazine() {
         
         <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
           <p style={{ marginBottom: '1.5rem', color: 'rgba(255, 255, 255, 0.7)' }}>
-            Click the button below to view the latest school magazine
+            View the latest school magazine
           </p>
           
           <Link to="/magazine-download"
@@ -41,17 +41,6 @@ export default function Magazine() {
         <p style={{ marginTop: '2rem', marginBottom: '0', color: 'rgba(255, 255, 255, 0.5)', fontSize: '0.8125rem' }}>
           Published by Greets Public School · CBSE Affiliated
         </p>
-        
-        <div style={{ marginTop: '3rem', padding: '1.5rem', background: 'rgba(255, 255, 255, 0.05)', borderRadius: '12px' }}>
-          <p style={{ margin: '0', color: 'rgba(255, 255, 255, 0.5)', fontSize: '0.875rem' }}>
-            If the PDF does not open, please ensure you have a PDF viewer installed.
-            The magazine contains student articles, project highlights, and club updates.
-            <br/>
-            To add your own magazine PDF, place the file at:
-            <br/>
-            <code>public/assets/school-magazine.pdf</code>
-          </p>
-        </div>
       </div>
     </div>
   );
