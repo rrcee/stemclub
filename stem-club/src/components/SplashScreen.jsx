@@ -1,10 +1,13 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import gsap from 'gsap';
-import { Layers, ShieldCheck, Sparkles } from 'lucide-react';
+import { ShieldCheck, Sparkles } from 'lucide-react';
 
 export default function SplashScreen({ onFinish }) {
   const [removed, setRemoved] = useState(false);
   const containerRef = useRef(null);
+  const videoFrameRef = useRef(null);
+  const videoRef = useRef(null);
+  const isFinishingRef = useRef(false);
 
   // Frame 1: School Logo Refs
   const frame1Ref = useRef(null);
@@ -21,8 +24,10 @@ export default function SplashScreen({ onFinish }) {
   const text2StemRef = useRef(null);
   const badge2Ref = useRef(null);
 
-  const finishSplash = () => {
-    if (!containerRef.current) return;
+  const finishSplash = useCallback(() => {
+    if (!containerRef.current || isFinishingRef.current) return;
+    isFinishingRef.current = true;
+    videoRef.current?.pause();
     gsap.killTweensOf(containerRef.current);
     gsap.to(containerRef.current, {
       opacity: 0,
@@ -34,7 +39,7 @@ export default function SplashScreen({ onFinish }) {
         if (onFinish) onFinish();
       }
     });
-  };
+  }, [onFinish]);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -47,18 +52,20 @@ export default function SplashScreen({ onFinish }) {
       gsap.set(card2Ref.current, { scale: 0.85, opacity: 1 });
       gsap.set(ring2Ref.current, { scale: 0.7, opacity: 0.8, rotation: 0 });
       gsap.set([text2StemRef.current, badge2Ref.current], { opacity: 1, y: 0 });
+      gsap.set(videoFrameRef.current, { display: 'none', opacity: 0 });
 
       // 2. Master Sequence Timeline
       const tl = gsap.timeline({
         onComplete: () => {
-          gsap.to(containerRef.current, {
-            opacity: 0,
-            scale: 1.05,
-            duration: 0.45,
+          gsap.set(frame2Ref.current, { display: 'none' });
+          gsap.set(videoFrameRef.current, { display: 'flex' });
+          gsap.to(videoFrameRef.current, {
+            opacity: 1,
+            duration: 0.5,
             ease: 'power2.inOut',
             onComplete: () => {
-              setRemoved(true);
-              if (onFinish) onFinish();
+              const playback = videoRef.current?.play();
+              playback?.catch(finishSplash);
             }
           });
         }
@@ -135,21 +142,22 @@ export default function SplashScreen({ onFinish }) {
       });
     }, containerRef);
 
-    const handleKey = () => finishSplash();
+    const handleKey = (event) => {
+      if (event.key === 'Escape' || event.key === 'Enter') finishSplash();
+    };
     window.addEventListener('keydown', handleKey);
 
     return () => {
       ctx.revert();
       window.removeEventListener('keydown', handleKey);
     };
-  }, []);
+  }, [finishSplash]);
 
   if (removed) return null;
 
   return (
     <div
       ref={containerRef}
-      onClick={finishSplash}
       style={{
         position: 'fixed',
         inset: 0,
@@ -160,12 +168,13 @@ export default function SplashScreen({ onFinish }) {
         alignItems: 'center',
         justifyContent: 'center',
         padding: '1.5rem',
-        cursor: 'pointer',
+        cursor: 'default',
         userSelect: 'none',
         overflow: 'hidden'
       }}
-      role="status"
-      aria-label="Greets STEM Club Loading Screen"
+      role="dialog"
+      aria-label="Greets STEM Club introduction"
+      aria-modal="true"
     >
       {/* Background Kinetic Circuit Grid */}
       <div
@@ -452,6 +461,63 @@ export default function SplashScreen({ onFinish }) {
             <Sparkles size={14} /> Innovation Labs • Kochi
           </div>
         </div>
+      </div>
+
+      {/* STAGE 03: Intro video, shown after both logo transitions */}
+      <div
+        ref={videoFrameRef}
+        style={{
+          position: 'absolute',
+          inset: 0,
+          display: 'none',
+          alignItems: 'center',
+          justifyContent: 'center',
+          backgroundColor: '#ffffff',
+          opacity: 0,
+          zIndex: 5
+        }}
+      >
+        <video
+          ref={videoRef}
+          src="/assets/stem-intro.mp4"
+          muted
+          playsInline
+          preload="auto"
+          onEnded={finishSplash}
+          onError={finishSplash}
+          aria-label="Greets STEM Club animated introduction"
+          style={{
+            width: '100%',
+            height: '100%',
+            objectFit: 'contain',
+            backgroundColor: '#ffffff'
+          }}
+        />
+
+        <button
+          type="button"
+          onClick={finishSplash}
+          style={{
+            position: 'absolute',
+            top: 'max(1rem, env(safe-area-inset-top))',
+            right: 'max(1rem, env(safe-area-inset-right))',
+            padding: '0.55rem 1rem',
+            borderRadius: '999px',
+            border: '1px solid rgba(0, 0, 0, 0.2)',
+            background: 'rgba(255, 255, 255, 0.88)',
+            color: '#000000',
+            fontFamily: 'var(--font-mono)',
+            fontSize: '0.75rem',
+            fontWeight: 800,
+            letterSpacing: '0.04em',
+            cursor: 'pointer',
+            boxShadow: '0 4px 16px rgba(0, 0, 0, 0.12)',
+            backdropFilter: 'blur(8px)'
+          }}
+          aria-label="Skip introduction video"
+        >
+          SKIP INTRO
+        </button>
       </div>
     </div>
   );
